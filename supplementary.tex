@@ -1,0 +1,156 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{lineno} % for line numbering
+\usepackage{setspace} % for double-spaced text
+\newcommand{\hl}[1]{\textcolor{red}{#1}}
+\usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry} % for margins
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc, fit, tikzmark, bayesnet}
+\usepackage{amsmath,amsfonts}
+\usepackage{bbm}
+\usepackage{authblk}
+\usepackage{sidecap}
+\sidecaptionvpos{figure}{t}
+\usepackage[labelfont=bf,font={it}]{caption}
+
+\setcounter{figure}{-1}
+
+
+%%%%%%%%%%%%%%%%
+% MATH SYMBOLS
+%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\Poisson}{Poisson}
+\DeclareMathOperator{\Multinom}{Multinom}
+\DeclareMathOperator{\logit}{logit}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\Ind}{I}
+\def\P{\mathbb{P}}
+\def\E{\mathbb{E}}
+
+\def\x{\boldsymbol{x}}
+
+\def\balpha{\boldsymbol{\alpha}}
+\def\btau{\boldsymbol{\tau}}
+\def\bmu{\boldsymbol{\mu}}
+\def\bxi{\boldsymbol{\xi}}
+
+\def\bLambda{\boldsymbol{\Lambda}}
+\def\bP{\boldsymbol{P}}
+\def\bd{\boldsymbol{d}}
+
+
+\def\Ccal{{\cal C}}
+\def\C{{\cal C}}
+\def\E{{\cal E}}
+\def\I{{\cal I}}
+\def\N{{\cal N}}
+\def\M{{\cal M}}
+\def\R{{\cal R}}
+\def\T{{\cal T}}
+\def\X{{\cal X}}
+\def\Y{{\cal Y}}
+\def\Z{{\cal Z}}
+\def\D{{\cal D}}
+
+%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%
+
+\usepackage[style=apa,natbib=true,doi=true,isbn=false,url=false,uniquename=false,uniquelist=false,firstinits=true,bibencoding=utf8]{biblatex}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
+\AtEveryBibitem{\clearfield{pages}}
+\AtEveryCitekey{\clearfield{pages}}
+\AtEveryBibitem{\clearfield{archivePrefix}}
+\AtEveryCitekey{\clearfield{archivePrefix}}
+\AtEveryBibitem{\clearfield{arxivId}}
+\AtEveryCitekey{\clearfield{arxivId}}
+\AtEveryBibitem{\clearfield{eprint}}
+\AtEveryCitekey{\clearfield{eprint}}
+
+\DeclareNameFormat{newformat}{%
+  \nameparts{#1}% split the name data, will not be necessary in future versions
+  \usebibmacro{name:newformat}%
+}
+
+\bibliography{library.bib}
+\setlength\parindent{0pt}
+%\linenumbers
+
+%%%%%%%%%%%%%%%%
+% Opening
+%%%%%%%%%%%%%%%%
+
+\title{Supplemental Information:\\
+Anticipating the Chemistry of Live (ACOL)}
+
+\date{} % Remove date
+\author[1]{Marco Visani}
+\author[1,2]{Madleina Caduff}
+\author[1]{Christoph Leuenberger}
+\author[1,2]{Daniel Wegmann}
+\author[1,3]{Pierre-Marie Allard}
+\affil[1]{Department of Biology, University of Fribourg, 1700 Fribourg, Switzerland}
+\affil[2]{Swiss Institute of Bioinformatics, 1700 Fribourg, Switzerland}
+\affil[3]{Corresponding author, pierre-marie.allard@unifr.ch}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Computational tricks}
+
+\subsection{Discretization of branch lengths}
+
+The parameters of the rate matrix $\mu_{c1}$ and $\mu_{c2}$ and the branch lengths $b(n)$ are non identifiable: doubling all rate parameters and halving all branch lengths will lead to the exact same solution. We therefore introduce the constraint
+
+\begin{equation*}
+ \sum_n b(n) = 1,
+\end{equation*}
+
+such that $0 \leq b(n) \leq 1$ for all branch lengths $b(n)$.
+
+We further note that calculating the matrix exponential $\bP(n) = \exp(\bLambda_c b(n))$ for every possible branch length is computationally prohibitive. To reduce the number of calculations, we bin the branch lengths to predefined values. Specifically, let there be a regularly spaced grid on the interval $[a,b]$ consisting of $K$ bins. The width of each bin is given by $\Delta = \frac{b - a}{K}$. Let us further define by $k(n) \in 0, \ldots, K-1$ the bin where node $n$ is assigned to.
+
+The transition matrix of the first three bins is given by:
+\begin{eqnarray*}
+ \bP(0) &=& \exp(\bLambda_c a)\\
+ \bP(1) &=& \exp(\bLambda_c (a + \Delta))\\
+ \bP(2) &=& \exp(\bLambda_c (a + 2\Delta)).
+\end{eqnarray*}
+
+More generally, the transition matrix for bin $k$ is given by:
+
+\begin{equation*}
+  \bP(k) = \exp(\bLambda_c (a + k\Delta)).
+\end{equation*}
+
+For all $k = 1, \ldots, K-1$, this term can be calculated efficiently using a recursion:
+
+
+\begin{eqnarray*}
+  \bP(k) &=& \exp(\bLambda_c (a + k\Delta))\\
+         &=& \exp(\bLambda_c (a + (k-1)\Delta) + \bLambda_c \Delta)\\
+         &=& \exp(\bLambda_c (a + (k-1)\Delta)) \exp( \bLambda_c \Delta),
+\end{eqnarray*}
+
+where $\exp(\bLambda_c (a + (k-1)\Delta))$ corresponds to the transition matrix of the previous bin $k-1$, and $\balpha = \exp( \bLambda_c \Delta)$ is a scaling matrix that needs to be calculated once. Therefore, the matrix exponential needs to be calculated only twice: once for calculating first transition matrix $\bP(0)$ and once for calculating the scaling matrix $\balpha$. The transition matrices of all subsequent bins are obtained by a recursive matrix multiplication, which is very cheap to calculate.
+
+Since the sum of all branch lengths is constrained to one, most branch lengths will likely be very small. We therefore set $a=0$ and $b=0.1$ by default, assuming that the longest branch length of the tree will not exceed 10\% of the total length. We further set $K=100$ bins by default. However, all default values can be changed by the user.
+
+To respect the sum-one-constraint, we update the branch lengths in pairs. Specifically, we select two nodes $n_1$ and $n_2$, pick a sign (+ or -) and propose moving to an adjacent bin: either $k(n_1)' = k(n_1) + 1$ and $k(n_2)' = k(n_2) - 1$ or $k(n_1)' = k(n_1) - 1$ and $k(n_2)' = k(n_2) + 1$. If the bin of a node corresponds to the first or the last bin, $k(n) = 0$ or $k(n) = K-1$, there is only one possible direction for proposing.
+
+\subsection{Discretization of rate parameters}
+
+When updating the transition rate parameters $\mu_{c1}$ and $\mu_{c2}$ for a clique $c$, the transition matrix $\bP(k)$ for all $k=0, \ldots, K-1$ bins must be re-calculated. Despite the above approach, this becomes computationally prohibitive when considering there to be millions of cliques (one per molecule).
+We therefore propose to discretize the values of the rate parameters as well. We will use a logarithmically spaced grid in the interval $[x, y]$ with a total of $M$ bins. \hl{Not clear how many bins we will need.} It is then possible to pre-calculate and store all combinations of $K$ branch lengths and $M^2$ values of $\mu_{c1}$ and $\mu_{c2}$, such that the update of these parameters will be very fast.
+
+
+\printbibliography
+
+\end{document}
