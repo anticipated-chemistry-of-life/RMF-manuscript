@@ -254,18 +254,21 @@ The joint density of $\X$ factorizes as
 \begin{equation}
 	\bLambda_c =
 	\begin{pmatrix}
-		-\mu_{c1} & \mu_{c1}\\
-		\mu_{c0} & -\mu_{c0}\\
+		-\alpha_c & \alpha_c \\
+		1-\alpha_c & \alpha_c -1 \\
 	\end{pmatrix}
 \end{equation}
 be the rate matrix for changes between states 0 and 1 along the tree. For each node $n \in \N_d, n \notin \R_d$ that is not a root, the transition probabilities between parent node $p(n)$ and $n$ are then given by
 \begin{equation}
-	\bP(n) = \exp(\bLambda_c b(n)).
+	\bP(n) = \exp(\bLambda_c \nu_c b(n)).
 \end{equation}
+
+\alert{TODO : change $\nu(c)$ for something else as we have now the scaling rate of the in \ref{eq:stationary distribution}}
 
 We assume the root state probabilities are given by the stationary distribution of the Markov chain:
 \begin{equation}
-	\bP_{\infty} = \left(\frac{\mu_{c0}}{\mu_{c0} + \mu_{c1}}, \frac{\mu_{c1}}{\mu_{c0} + \mu_{c1}}\right).
+	\label{eq:stationary distribution}
+	\bP_{\infty} = \left(1-\alpha_c, \alpha_c\right).
 \end{equation}
 
 
@@ -280,7 +283,7 @@ where we used the shorthand $x \in \R_{\nu(c)}$ for $\delta_{\nu(c)}(x) \in \R_{
 
 \paragraph{Inference \& Scalability}
 
-The number of species and NPs in nature are huge. The model proposed above was carefully crafted to scale to these numbers. The total number of hierarchical parameters to infer are two rate parameters per clique and one branch length per node of each dimension, regardless of the number or size of the other dimensions. We will infer all parameters under a Bayesian scheme using Markov Chain Monte Carlo (\href{https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo}{MCMC}) techniques to obtain posterior probabilities on all $x \in \X$.
+The number of species and NPs in nature are huge. The model proposed above was carefully crafted to scale to these numbers. The total number of hierarchical parameters to infer are rate parameter per clique, one scaling factor and one branch length per node of each dimension, regardless of the number or size of the other dimensions. We will infer all parameters under a Bayesian scheme using Markov Chain Monte Carlo (\href{https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo}{MCMC}) techniques to obtain posterior probabilities on all $x \in \X$.
 
 \subsubsection{Observed data}
 
@@ -308,7 +311,7 @@ We will model the probability of $L_{ms}$ given $x(m,s)$ as a function of $R_{sm
 
 The probability of discovery $R_{ms}$ will be modeled as a function of the known total number of relevant papers published for NP $m$ ($P_m$) and for species $s$ ($Q_s$), such that
 \begin{equation*}
-	R_{ms} = 1 - e^{-\gamma P_m - \delta Q_s}
+	R_{ms} = (1 - e^{-\gamma_0 P_m })  (1 - e^{-\gamma_1 Q_s})
 \end{equation*}
 with positives scalars $\gamma$ and $\delta$ that we will infer.
 
