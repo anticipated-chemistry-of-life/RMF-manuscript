@@ -302,8 +302,8 @@ We will model the probability of $L_{ms}$ given $x(m,s)$ as a function of $R_{sm
 \begin{equation*}
 	\P(L_{ms}|\x(m,s), R_{ms}) =
 	\begin{cases}
-		0 \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 1,\\
-		1 \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 0,\\
+		\epsilon \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 1,\\
+		1-\epsilon \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 0,\\
 		R_{ms} \quad &\mathrm{if\ } \x(m,s)=1, L_{ms} = 1,\\
 		1- R_{ms} \quad &\mathrm{if\ } \x(m,s)=1, L_{ms} = 0.
 	\end{cases}
