@@ -1,0 +1,3 @@
+\contentsline {section}{\numberline {1}Computational tricks}{1}{}%
+\contentsline {subsection}{\numberline {1.1}Discretization of branch lengths}{1}{}%
+\contentsline {subsection}{\numberline {1.2}Discretization of rate parameters}{2}{}%
