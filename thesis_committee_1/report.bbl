@@ -1,0 +1,100 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{wandyViMMSFrameworkDevelop2022}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=87892caecd9ecb82c107f4c654345504}{%
+           family={Wandy},
+           familyi={W\bibinitperiod},
+           given={Joe},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fa495d3d7a6fca51ef9e0e9e80e8361d}{%
+           family={Davies},
+           familyi={D\bibinitperiod},
+           given={Vinny},
+           giveni={V\bibinitperiod}}}%
+        {{hash=69894f64febc94ed51a242e5811337a2}{%
+           family={McBride},
+           familyi={M\bibinitperiod},
+           given={Ross},
+           giveni={R\bibinitperiod}}}%
+        {{hash=f93e81ce847734462490d192a205b25a}{%
+           family={Weidt},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=2f6fd6b38926301817039137e1b1ff2c}{%
+           family={Rogers},
+           familyi={R\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d3bf3e12e778daacd29b5213e9ece935}{%
+           family={Daly},
+           familyi={D\bibinitperiod},
+           given={Rónán},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{53306088415172eab9b021153b7dd923}
+      \strng{fullhash}{9f7d072535ab8bc0c260600f00f75f8e}
+      \strng{fullhashraw}{9f7d072535ab8bc0c260600f00f75f8e}
+      \strng{bibnamehash}{53306088415172eab9b021153b7dd923}
+      \strng{authorbibnamehash}{53306088415172eab9b021153b7dd923}
+      \strng{authornamehash}{53306088415172eab9b021153b7dd923}
+      \strng{authorfullhash}{9f7d072535ab8bc0c260600f00f75f8e}
+      \strng{authorfullhashraw}{9f7d072535ab8bc0c260600f00f75f8e}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{day}{30}
+      \field{issn}{2475-9066}
+      \field{journaltitle}{Journal of Open Source Software}
+      \field{month}{3}
+      \field{number}{71}
+      \field{shortjournal}{JOSS}
+      \field{shorttitle}{{{ViMMS}} 2.0}
+      \field{title}{{{ViMMS}} 2.0: {{A}} Framework to Develop, Test and Optimise fragmentation Strategies in {{LC-MS}} Metabolomics}
+      \field{urlday}{1}
+      \field{urlmonth}{3}
+      \field{urlyear}{2023}
+      \field{volume}{7}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{3990}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.21105/joss.03990
+      \endverb
+      \verb{file}
+      \verb /Users/visanim/Zotero/storage/NDKTF6QF/Wandy et al. - 2022 - ViMMS 2.0 A framework to develop, test and optimi.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://joss.theoj.org/papers/10.21105/joss.03990
+      \endverb
+      \verb{url}
+      \verb https://joss.theoj.org/papers/10.21105/joss.03990
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

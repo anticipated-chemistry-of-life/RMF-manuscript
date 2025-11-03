@@ -1,0 +1,172 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{xcolor} % Required for specifying custom colours
+
+\colorlet{mdtRed}{red!50!black}
+\hypersetup{
+	colorlinks,
+	citecolor=mdtRed,
+	filecolor=black,
+	linkcolor=mdtRed,
+	urlcolor=mdtRed
+}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{lineno} % for line numbering
+\usepackage{setspace} % for double-spaced text
+\newcommand{\hl}[1]{\textcolor{red}{#1}}
+\usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry} % for margins
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, calc, fit, tikzmark, bayesnet}
+\usepackage{amsmath,amsfonts}
+\usepackage{bbm}
+\usepackage{authblk}
+\usepackage{sidecap}
+\sidecaptionvpos{figure}{t}
+\usepackage[labelfont=bf,font={it}]{caption}
+
+\setcounter{figure}{-1}
+
+
+%%%%%%%%%%%%%%%%
+% MATH SYMBOLS
+%%%%%%%%%%%%%%%%
+\DeclareMathOperator{\Poisson}{Poisson}
+\DeclareMathOperator{\Multinom}{Multinom}
+\DeclareMathOperator{\logit}{logit}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\Ind}{I}
+\def\P{\mathbb{P}}
+\def\E{\mathbb{E}}
+
+\def\x{\boldsymbol{x}}
+
+\def\balpha{\boldsymbol{\alpha}}
+\def\btau{\boldsymbol{\tau}}
+\def\bmu{\boldsymbol{\mu}}
+\def\bxi{\boldsymbol{\xi}}
+
+\def\bLambda{\boldsymbol{\Lambda}}
+\def\bP{\boldsymbol{P}}
+\def\bd{\boldsymbol{d}}
+
+
+\def\Ccal{{\cal C}}
+\def\C{{\cal C}}
+\def\E{{\cal E}}
+\def\I{{\cal I}}
+\def\N{{\cal N}}
+\def\M{{\cal M}}
+\def\R{{\cal R}}
+\def\T{{\cal T}}
+\def\X{{\cal X}}
+\def\Y{{\cal Y}}
+\def\Z{{\cal Z}}
+\def\D{{\cal D}}
+
+%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%
+
+\usepackage[style=numeric,natbib=true,doi=true,isbn=false,url=false,uniquename=false,uniquelist=false,firstinits=true,bibencoding=utf8]{biblatex}
+\addbibresource{library.bib}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
+\AtEveryBibitem{\clearfield{pages}}
+\AtEveryCitekey{\clearfield{pages}}
+\AtEveryBibitem{\clearfield{archivePrefix}}
+\AtEveryCitekey{\clearfield{archivePrefix}}
+\AtEveryBibitem{\clearfield{arxivId}}
+\AtEveryCitekey{\clearfield{arxivId}}
+\AtEveryBibitem{\clearfield{eprint}}
+\AtEveryCitekey{\clearfield{eprint}}
+
+
+\DeclareNameFormat{newformat}{%
+	\nameparts{#1}% split the name data, will not be necessary in future versions
+	\usebibmacro{name:newformat}%
+}
+
+\bibliography{library.bib}
+\setlength\parindent{0pt}
+%\linenumbers
+
+%%%%%%%%%%%%%%%%
+% Opening
+%%%%%%%%%%%%%%%%
+
+\title{Annual Report Year 1 \\
+	Anticipating the Chemistry of Life (ACOL)}
+
+\date{\today} % Remove date
+\author[1,2]{Marco Visani}
+\author[1,2]{Madleina Caduff}
+\author[1,2]{Daniel Wegmann}
+\author[1,2,3]{Pierre-Marie Allard}
+\affil[1]{Department of Biology, University of Fribourg, 1700 Fribourg, Switzerland}
+\affil[2]{Swiss Institute of Bioinformatics, 1700 Fribourg, Switzerland}
+\affil[3]{Corresponding author, \href{mailto:pierre-marie.allard@unifr.ch}{pierre-marie.allard@unifr.ch}}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+\section{Markov Random Field}
+\subsection{WP 1}
+\begin{equation}
+	\bLambda_c =
+	\begin{pmatrix}
+		-\alpha_c  & \alpha_c    \\
+		1-\alpha_c & \alpha_c -1 \\
+	\end{pmatrix}
+\end{equation}
+We changed from $\mu_0$ and $\mu_1$ to a single parameter $\alpha$ which is the change rate to go from $0$ to $1$.
+
+\begin{equation}
+	\bP(n) = \exp(\bLambda_c \nu_c b(n)).
+\end{equation}
+We now have an additional parameter $\nu_c$	which is the rate parameter of the clique.
+
+\begin{equation}
+	\label{eq:stationary distribution}
+	\bP_{\infty} = \left(1-\alpha_c, \alpha_c\right).
+\end{equation}
+
+\begin{equation}
+	\P(L_{ms}|\x(m,s), R_{ms}) =
+	\begin{cases}
+		\epsilon \quad   & \mathrm{if\ } \x(m,s)=0, L_{ms} = 1, \\
+		1-\epsilon \quad & \mathrm{if\ } \x(m,s)=0, L_{ms} = 0, \\
+		R_{ms} \quad     & \mathrm{if\ } \x(m,s)=1, L_{ms} = 1, \\
+		1- R_{ms} \quad  & \mathrm{if\ } \x(m,s)=1, L_{ms} = 0.
+	\end{cases}
+\end{equation}
+Added an error rate $\epsilon$ in case a molecule was wrongly added to LOTUS.
+
+\begin{equation}
+	R_{ms} = (1 - e^{-\gamma_0 P_m })  (1 - e^{-\gamma_1 Q_s})
+\end{equation}
+Changed equation for research effort.
+
+\subsection{WP 2}
+Implementation still in discussion but we are planning to move from ViMMS \cite{wandyViMMSFrameworkDevelop2022} to just using outputs of annotation tools. We might use a combination of Sirius, Metfrag, CFM-ID and maybe weight these outputs.
+
+\subsection{Fake extract}
+Plate 3 was performed by a bachelor student, but results are weird, so we'll pass everything again. Plate 1 is done.
+\section{LOTUS Expanded}
+In silico chemical expansion of molecules in LOTUS. Produced $3\cdot10^6$ molecules.
+
+\section{EMI-Monorepo}
+Helped Luca on the Monorepo for a couple of crates.
+
+\section{Perspectives}
+I'd like to continue working with Luca in Rust as it is a skill that I want to master by the end of the PhD.
+
+\printbibliography
+
+\end{document}
