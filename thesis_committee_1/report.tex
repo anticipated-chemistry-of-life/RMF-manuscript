@@ -115,9 +115,19 @@
 \tableofcontents
 
 \section{Introduction}
+\subsubsection{Context}
+\subsubsection{Need}
+\subsubsection{Task}
+\subsubsection{Object}
 
 \section{Markov Random Field}
 \subsection{WP 1}
+\subsubsection{Context}
+\subsubsection{Need}
+\subsubsection{Task}
+\subsubsection{Object}
+
+The first months were dedicated for coaching me in C++. To do so, we started some simple implementations for the model. We started with some bitwise operations for the different storage vectors. Given the huge amount of data, we store in a single uint64 the state of the node (1 or 0), its coordinate, and the number of times it was a 1. This allowed me to understand some bitwise operations, how to create classes and the use of constructors.
 \begin{equation}
 	\bLambda_c =
 	\begin{pmatrix}
@@ -156,17 +166,48 @@ Added an error rate $\epsilon$ in case a molecule was wrongly added to LOTUS.
 Changed equation for research effort.
 
 \subsection{WP 2}
-Implementation still in discussion but we are planning to move from ViMMS \cite{wandyViMMSFrameworkDevelop2022} to just using outputs of annotation tools. We might use a combination of Sirius, Metfrag, CFM-ID and maybe weight these outputs.
+\subsubsection{Context}
+\subsubsection{Need}
+\subsubsection{Task}
+\subsubsection{Object}
+
+Implementation of mass spec data still in discussion but we are planning to move from ViMMS \cite{wandyViMMSFrameworkDevelop2022} to just using outputs of annotation tools. We might use a combination of Sirius, Metfrag, CFM-ID and maybe weight these outputs.
 
 \subsection{Fake extract}
+\subsubsection{Context}
+We would like to model the "loss" of molecules during the extraction process from Nature to the data analysis.
+\subsubsection{Need}
+\subsubsection{Task}
+\subsubsection{Object}
+
 Plate 3 was performed by a bachelor student, but results are weird, so we'll pass everything again. Plate 1 is done.
 \section{LOTUS Expanded}
-In silico chemical expansion of molecules in LOTUS. Produced $3\cdot10^6$ molecules.
+\subsubsection{Context}
+Along with the PhD, there are some side projects. One of which is the in silico expansion of the molecules in LOTUS thanks to some reaction rules.
+\subsubsection{Need}
+This allows to \textcolor{red}{TODO}
+\subsubsection{Task}
+It turns out me generate some molecules that are true natural products so we would like to see if we can create this synergy between: in silco generation of a compound, create its in silico MS2 spectrum, try to detect them in real data, if we do, then expanded that molecule again.
+\subsubsection{Object}
+In silico chemical expansion of molecules in LOTUS, producing $3\cdot10^6$ molecules. Website is being build. We want to add the species to the visualization. Still need to figure out how this can be broadly used.
 
 \section{EMI-Monorepo}
+\subsubsection{Context}
+EMI-Monorepo is our rust coded monolith were we are building all the tools for the Earth Metabolome Initiative. Our post doc Luca is leading the software development of the project. We are building everything in Rust from the backend to the frontend, to the data analysis part.
+
+\subsubsection{Need}
+Given the difficulty of the development of the portal, when Luca feels like a project could be a
+good training for me to learn Rust, he asks me to do it.
+
+\subsubsection{Task}
+\subsubsection{Object}
 Helped Luca on the Monorepo for a couple of crates. Lost a bit the track of what he is doing.
 
 \section{Perspectives}
+\subsubsection{Context}
+\subsubsection{Need}
+\subsubsection{Task}
+\subsubsection{Object}
 I'd like to continue working with Luca in Rust as it is a skill that I want to master by the end of the PhD.
 
 \printbibliography
