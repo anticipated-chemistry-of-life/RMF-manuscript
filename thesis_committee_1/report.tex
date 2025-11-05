@@ -70,7 +70,6 @@
 %%%%%%%%%%%%%%%%
 
 \usepackage[style=numeric,natbib=true,doi=true,isbn=false,url=false,uniquename=false,uniquelist=false,firstinits=true,bibencoding=utf8]{biblatex}
-\addbibresource{library.bib}
 \AtEveryBibitem{\clearfield{month}}
 \AtEveryCitekey{\clearfield{month}}
 \AtEveryBibitem{\clearfield{pages}}
@@ -115,19 +114,23 @@
 \tableofcontents
 
 \section{Introduction}
-\subsubsection{Context}
-\subsubsection{Need}
-\subsubsection{Task}
-\subsubsection{Object}
+Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been essential resources for the life sciences. Until recently, no equivalent resource existed for small molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was designed to address this issue, and forms currently the most comprehensive collection of natural products (NP) occurrences. It however gathers compounds physically isolated from species. While this ensures high confidence, the process of extraction and isolation is too slow to realistically document the chemical diversity of life. To address this issue, we explore two directions: experimental and computational. On one side, the Earth Metabolome Initiative will establish an open, linked knowledge base documenting the metabolome of all living organisms. In parallel, we develop computational strategies to anticipate the chemical constitution of species based on prior knowledge.
+
+My PhD consists in developing a probabilistic model that integrates LOTUS with large-scale mass spectrometry datasets to predict species metabolomes and estimate the likelihood of encountering NPs across the tree of life.
+After training and validation, I expect the model to predict the likelihood of encountering a given molecule in a given species, even if this compound has never been observed in this species before. I hope that this will help prioritize experimental efforts toward the most promising candidates and that this PhD will contribute to a better understanding of the distribution of specialized metabolites across the tree of life.
 
 \section{Markov Random Field}
 \subsection{WP 1}
-\subsubsection{Context}
-\subsubsection{Need}
-\subsubsection{Task}
-\subsubsection{Object}
+Main project of my PhD.
 
-The first months were dedicated for coaching me in C++. To do so, we started some simple implementations for the model. We started with some bitwise operations for the different storage vectors. Given the huge amount of data, we store in a single uint64 the state of the node (1 or 0), its coordinate, and the number of times it was a 1. This allowed me to understand some bitwise operations, how to create classes and the use of constructors.
+We assume that the pattern of presence and absence is modulated by similarities within each dimension. For instance, closely related species may share a similar set of NPs and NPs related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a \href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov Random Field} (MRF) approach.
+
+The first months were dedicated to my C++ training. I started with some simple implementations for the model. We started with some bitwise operations, class creation, familiarization with the tools developed in Daniel Wegmann's lab.
+
+
+for the different storage vectors. Given the huge amount of data, we store in a single uint64 the state of the node (1 or 0), its coordinate, and the number of times it was a 1. This allowed me to understand some bitwise operations, how to create classes and the use of constructors.
+
+A couple of adjustments were done compared to the model in the grant.
 \begin{equation}
 	\bLambda_c =
 	\begin{pmatrix}
@@ -140,7 +143,7 @@ We changed from $\mu_0$ and $\mu_1$ to a single parameter $\alpha$ which is the 
 \begin{equation}
 	\bP(n) = \exp(\bLambda_c \nu_c b(n)).
 \end{equation}
-We now have an additional parameter $\nu_c$	which is the rate parameter of the clique.
+We now have an additional parameter $\nu_c$	which is the rate parameter of the clique. With the same prior for all the cliques.
 
 Root state probabilities are given by the stationary distribution of the Markov chain:
 \begin{equation}
@@ -163,22 +166,14 @@ Added an error rate $\epsilon$ in case a molecule was wrongly added to LOTUS.
 \begin{equation}
 	R_{ms} = (1 - e^{-\gamma_0 P_m })  (1 - e^{-\gamma_1 Q_s})
 \end{equation}
-Changed equation for research effort.
+Changed equation for research effort. Previously if either of the species or the molecules had a lot of papers, then the research effort would directly go to 1. Now with this change, a lot of papers in both molecules \textit{and} species is required for having a high probability.
 
 \subsection{WP 2}
 \subsubsection{Context}
-\subsubsection{Need}
-\subsubsection{Task}
-\subsubsection{Object}
-
 Implementation of mass spec data still in discussion but we are planning to move from ViMMS \cite{wandyViMMSFrameworkDevelop2022} to just using outputs of annotation tools. We might use a combination of Sirius, Metfrag, CFM-ID and maybe weight these outputs.
 
 \subsection{Fake extract}
-\subsubsection{Context}
-We would like to model the "loss" of molecules during the extraction process from Nature to the data analysis.
-\subsubsection{Need}
-\subsubsection{Task}
-\subsubsection{Object}
+We would like to model the \textit{loss} of molecules during the extraction process from Nature to the data analysis.
 
 Plate 3 was performed by a bachelor student, but results are weird, so we'll pass everything again. Plate 1 is done.
 \section{LOTUS Expanded}
@@ -204,10 +199,7 @@ good training for me to learn Rust, he asks me to do it.
 Helped Luca on the Monorepo for a couple of crates. Lost a bit the track of what he is doing.
 
 \section{Perspectives}
-\subsubsection{Context}
-\subsubsection{Need}
-\subsubsection{Task}
-\subsubsection{Object}
+
 I'd like to continue working with Luca in Rust as it is a skill that I want to master by the end of the PhD.
 
 \printbibliography

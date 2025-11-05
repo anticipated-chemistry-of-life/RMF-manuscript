@@ -19,6 +19,125 @@
 
 \refsection{0}
   \datalist[entry]{nty/global//global/global/global}
+    \entry{rutzLOTUSInitiativeOpen2022}{article}{}{}
+      \name{author}{15}{}{%
+        {{hash=e51c463078756d31fdbd295c78696ce0}{%
+           family={Rutz},
+           familyi={R\bibinitperiod},
+           given={Adriano},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7f1e6205023a3113ec4c83509f250a6f}{%
+           family={Sorokina},
+           familyi={S\bibinitperiod},
+           given={Maria},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e4ed9005060ad692178219971ffdc7b7}{%
+           family={Galgonek},
+           familyi={G\bibinitperiod},
+           given={Jakub},
+           giveni={J\bibinitperiod}}}%
+        {{hash=05d2fefde083ce23b65167cf3f6ccfe4}{%
+           family={Mietchen},
+           familyi={M\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=3b7baf44de5b0739917496b10211a780}{%
+           family={Willighagen},
+           familyi={W\bibinitperiod},
+           given={Egon},
+           giveni={E\bibinitperiod}}}%
+        {{hash=9e0d4d6cd5bb99e4cf49b6cb92ec5f48}{%
+           family={Gaudry},
+           familyi={G\bibinitperiod},
+           given={Arnaud},
+           giveni={A\bibinitperiod}}}%
+        {{hash=c560faefdb02866b27275e3c43c51b24}{%
+           family={Graham},
+           familyi={G\bibinitperiod},
+           given={James\bibnamedelima G},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=9aed20ce9773341627d880b79292893d}{%
+           family={Stephan},
+           familyi={S\bibinitperiod},
+           given={Ralf},
+           giveni={R\bibinitperiod}}}%
+        {{hash=e5bf5ed0d1f5c560ecdcb3834787ce55}{%
+           family={Page},
+           familyi={P\bibinitperiod},
+           given={Roderic},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1258424732458b2dd85d8e719244f794}{%
+           family={Vondrášek},
+           familyi={V\bibinitperiod},
+           given={Jiří},
+           giveni={J\bibinitperiod}}}%
+        {{hash=f5654fd44a464efae4624efef1ab4e8b}{%
+           family={Steinbeck},
+           familyi={S\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=a841d16bd5925da3dd70f3db84b65247}{%
+           family={Pauli},
+           familyi={P\bibinitperiod},
+           given={Guido\bibnamedelima F},
+           giveni={G\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=0a0ffa82a73455ff2b12fc453d0df82f}{%
+           family={Wolfender},
+           familyi={W\bibinitperiod},
+           given={Jean-Luc},
+           giveni={J\bibinithyphendelim L\bibinitperiod}}}%
+        {{hash=aae54f582af42563aa8499217a0af790}{%
+           family={Bisson},
+           familyi={B\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a41a71834a73e21528dde6b91c9952ed}{%
+           family={Allard},
+           familyi={A\bibinitperiod},
+           given={Pierre-Marie},
+           giveni={P\bibinithyphendelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{8e79b9e808f8dac834931e868e24012a}
+      \strng{fullhash}{d569004f65c0b0de9f57d5cd46f4673a}
+      \strng{fullhashraw}{d569004f65c0b0de9f57d5cd46f4673a}
+      \strng{bibnamehash}{8e79b9e808f8dac834931e868e24012a}
+      \strng{authorbibnamehash}{8e79b9e808f8dac834931e868e24012a}
+      \strng{authornamehash}{8e79b9e808f8dac834931e868e24012a}
+      \strng{authorfullhash}{d569004f65c0b0de9f57d5cd46f4673a}
+      \strng{authorfullhashraw}{d569004f65c0b0de9f57d5cd46f4673a}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Contemporary bioinformatic and chemoinformatic capabilities hold promise to reshape knowledge management, analysis and interpretation of data in natural products research. Currently, reliance on a disparate set of non-standardized, insular, and specialized databases presents a series of challenges for data access, both within the discipline and for integration and interoperability between related fields. The fundamental elements of exchange are referenced structure-organism pairs that establish relationships between distinct molecular structures and the living organisms from which they were identified. Consolidating and sharing such information via an open platform has strong transformative potential for natural products research and beyond. This is the ultimate goal of the newly established LOTUS initiative, which has now completed the first steps toward the harmonization, curation, validation and open dissemination of 750,000+ referenced structure-organism pairs. LOTUS data is hosted on Wikidata and regularly mirrored on https://lotus.naturalproducts.net . Data sharing within the Wikidata framework broadens data access and interoperability, opening new possibilities for community curation and evolving publication models. Furthermore, embedding LOTUS data into the vast Wikidata knowledge graph will facilitate new biological and chemical insights. The LOTUS initiative represents an important advancement in the design and deployment of a comprehensive and collaborative natural products knowledge base.}
+      \field{day}{26}
+      \field{issn}{2050-084X}
+      \field{journaltitle}{eLife}
+      \field{langid}{english}
+      \field{month}{5}
+      \field{title}{The {{LOTUS}} Initiative for Open Knowledge Management in Natural Products Research}
+      \field{urlday}{7}
+      \field{urlmonth}{1}
+      \field{urlyear}{2023}
+      \field{volume}{11}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{e70780}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.7554/eLife.70780
+      \endverb
+      \verb{file}
+      \verb /Users/visanim/Zotero/storage/9QIUVY7V/Rutz et al. - 2022 - The LOTUS initiative for open knowledge management.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://elifesciences.org/articles/70780
+      \endverb
+      \verb{url}
+      \verb https://elifesciences.org/articles/70780
+      \endverb
+    \endentry
     \entry{wandyViMMSFrameworkDevelop2022}{article}{}{}
       \name{author}{6}{}{%
         {{hash=87892caecd9ecb82c107f4c654345504}{%
