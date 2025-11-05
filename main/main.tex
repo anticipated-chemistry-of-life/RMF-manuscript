@@ -145,45 +145,45 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 %----------------------------------------------------------------------------------------
 
 \begin{titlepage}
-\includegraphics[scale=0.3]{../images/UnifrLogo} % University logo
-\begin{center}
-\vspace*{.06\textheight}
-{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
+	\includegraphics[scale=0.3]{../images/UnifrLogo} % University logo
+	\begin{center}
+		\vspace*{.06\textheight}
+		{\scshape\LARGE \univname\par}\vspace{1.5cm} % University name
 
-\textsc{\Large Manuscript}\\[0.5cm] % Thesis type
+		\textsc{\Large Manuscript}\\[0.5cm] % Thesis type
 
-\HRule \\[0.4cm] % Horizontal line
-{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
-\HRule \\[1.5cm] % Horizontal line
- 
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushleft} \large
-\emph{Authors:}\\
-\href{mailto:madleina.caduff@unifr.ch}{Madleina \textsc{Caduff}}\\
-\href{mailto:contact@vismarco.ch}{\authorname} % Author name - remove the \href bracket to remove the link
-\end{flushleft}
-\end{minipage}
-\begin{minipage}[t]{0.4\textwidth}
-\begin{flushright} \large
-\emph{Supervisors:} \\
-\href{mailto:daniel.wegmann@unifr.ch}{Prof. Daniel \textsc{Wegmann}} \\
-\href{mailto:pierre-marie.allard@unifr.ch}{Dr. Pierre-Marie \textsc{Allard}}% Supervisor name - remove the \href bracket to remove the link  
-\end{flushright}
-\end{minipage}\\[3cm]
- 
-\vfill
+		\HRule \\[0.4cm] % Horizontal line
+		{\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
+		\HRule \\[1.5cm] % Horizontal line
 
-%\large \textit{A thesis submitted in fulfillment of the requirements \\ for the degree of \degreename}\\[0.3cm] % University requirement text
-%\textit{in the}\\[0.4cm]
-%\groupname\\\deptname\\[2cm] % Research group name and department name
- 
-\vfill
+		\begin{minipage}[t]{0.4\textwidth}
+			\begin{flushleft} \large
+				\emph{Authors:}\\
+				\href{mailto:madleina.caduff@unifr.ch}{Madleina \textsc{Caduff}}\\
+				\href{mailto:contact@vismarco.ch}{\authorname} % Author name - remove the \href bracket to remove the link
+			\end{flushleft}
+		\end{minipage}
+		\begin{minipage}[t]{0.4\textwidth}
+			\begin{flushright} \large
+				\emph{Supervisors:} \\
+				\href{mailto:daniel.wegmann@unifr.ch}{Prof. Daniel \textsc{Wegmann}} \\
+				\href{mailto:pierre-marie.allard@unifr.ch}{Dr. Pierre-Marie \textsc{Allard}}% Supervisor name - remove the \href bracket to remove the link  
+			\end{flushright}
+		\end{minipage}\\[3cm]
 
-{\large \today}\\[4cm] % Date
-%\includegraphics{Logo} % University/department logo - uncomment to place it
- 
-\vfill
-\end{center}
+		\vfill
+
+		%\large \textit{A thesis submitted in fulfillment of the requirements \\ for the degree of \degreename}\\[0.3cm] % University requirement text
+		%\textit{in the}\\[0.4cm]
+		%\groupname\\\deptname\\[2cm] % Research group name and department name
+
+		\vfill
+
+		{\large \today}\\[4cm] % Date
+		%\includegraphics{Logo} % University/department logo - uncomment to place it
+
+		\vfill
+	\end{center}
 \end{titlepage}
 
 %----------------------------------------------------------------------------------------
@@ -201,12 +201,12 @@ chapterinoneline, % Uncomment to place the chapter title next to the number on o
 %----------------------------------------------------------------------------------------
 %
 \begin{abbreviations}{ll}\label{sec:abbreviations} % Include a list of abbreviations (a table of two columns)
-	
-\textbf{DAG} & \textbf{D}irected \textbf{A}cyclic \textbf{G}raph\\
-\textbf{GNN(s)} & \textbf{G}raph \textbf{N}eural \textbf{N}etwork(s) \\
-\textbf{MS} & \textbf{M}ass \textbf{S}pectrometry \\
-\textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
-\textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
+
+	\textbf{DAG} & \textbf{D}irected \textbf{A}cyclic \textbf{G}raph\\
+	\textbf{GNN(s)} & \textbf{G}raph \textbf{N}eural \textbf{N}etwork(s) \\
+	\textbf{MS} & \textbf{M}ass \textbf{S}pectrometry \\
+	\textbf{NP(s)} & \textbf{N}atural \textbf{P}roduct(s) \\
+	\textbf{RMF} & \textbf{R}andom \textbf{M}arkov \textbf{F}ield \\
 
 
 
@@ -254,7 +254,7 @@ The joint density of $\X$ factorizes as
 \begin{equation}
 	\bLambda_c =
 	\begin{pmatrix}
-		-\alpha_c & \alpha_c \\
+		-\alpha_c  & \alpha_c    \\
 		1-\alpha_c & \alpha_c -1 \\
 	\end{pmatrix}
 \end{equation}
@@ -302,10 +302,10 @@ We will model the probability of $L_{ms}$ given $x(m,s)$ as a function of $R_{sm
 \begin{equation*}
 	\P(L_{ms}|\x(m,s), R_{ms}) =
 	\begin{cases}
-		\epsilon \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 1,\\
-		1-\epsilon \quad &\mathrm{if\ } \x(m,s)=0, L_{ms} = 0,\\
-		R_{ms} \quad &\mathrm{if\ } \x(m,s)=1, L_{ms} = 1,\\
-		1- R_{ms} \quad &\mathrm{if\ } \x(m,s)=1, L_{ms} = 0.
+		\epsilon \quad   & \mathrm{if\ } \x(m,s)=0, L_{ms} = 1, \\
+		1-\epsilon \quad & \mathrm{if\ } \x(m,s)=0, L_{ms} = 0, \\
+		R_{ms} \quad     & \mathrm{if\ } \x(m,s)=1, L_{ms} = 1, \\
+		1- R_{ms} \quad  & \mathrm{if\ } \x(m,s)=1, L_{ms} = 0.
 	\end{cases}
 \end{equation*}
 
@@ -329,7 +329,7 @@ Ultra High Performance Liquid Chromatography coupled to fragmentation Mass Spect
 
 Suppose $\D_i$ is an LC-MSMS profile obtained from a sample representing a specific vector $\bxi=(\xi_{i2}, \ldots, \xi_i{D}), \xi_{id} \in \E_d$ of leaves in all dimensions except NPs one, such as, for instance, a sample representing a specific tissue of a specific species. We will calculate the probability of the LC-MSMS data $\D_i$ given $\X$ as schematized in Figure \ref{fig:method-overview}B: Let $\x(\bxi_i) \subset \X$ denote a slice through $\X$ relevant for $\D_i$, \textit{i.e.} consisting of all variables that represent a leave in the metabolite dimension and the specific leaves $\bxi$ in each other dimension such that for all $x,x' \in \x(\bxi_i)$, $\delta_1(x) \in \N_1$, $\delta_1(x) \neq \delta_1(x')$ and $\delta_{d \neq 1}(x) =\delta_{d \neq 1}(x') = \xi_{id} \in \E_d$. We will develop an NPs-flavored \textbf{Vi}rtual \textbf{M}etabolomics \textbf{M}ass \textbf{S}pectrometer (\textbf{ViMMS}) building on the original implementation \cite{wandy_2019}. It will be fed by an in silico spectral database of the last LOTUS contents (\href{https://doi.org/10.5281/zenodo.8287341}{ISDB-LOTUS}) and informed by prior expert knowledge regarding the classes of analytes lost in the reductionist and stochastic metabolomics approach here formed by \textit{extraction}, \textit{liquid chromatography} and \textit{mass spectrometry fragmentation} stages. The NPs-ViMMS will allow the generation of theoretical metabolomics datasets for any given input ($\D_i'$), these will be then be compared to experimental results ($\D_i$).
 
-To compare the resulting LC-MSMS profile $\D_i'$ to $\D_i$, we will then take advantage of \textbf{MEMO} (MS2 BasEd SaMple VectOrization), a method we recently established for the computationally efficient comparison of large sets of samples based on their LC-MSMS profiles \cite{gaudry_2022}. The first step is to extract fragment ions and neutral losses from each MSMS spectrum binned from the detected features in so-called “documents” using Spec2Vec \cite{huber_2021}. Then, for a given sample, all the documents created are aggregated based on word occurrences to form a fingerprint (a MEMO vector). The MEMO strategy exploits the advantages of LC, namely its separation power (thus simplifying the chemical complexity of the sample being analyzed and allowing resolution of isomerisms) while avoiding the disadvantages of RT-based alignment since MEMO vectors contain only mass spectrometry information. Here we'll implement a stochastic comparison of MEMO vectors $\M(\D_i')$ and $\M(\D_i)$ using a per entry error rate $\epsilon$ to be inferred from the data. 
+To compare the resulting LC-MSMS profile $\D_i'$ to $\D_i$, we will then take advantage of \textbf{MEMO} (MS2 BasEd SaMple VectOrization), a method we recently established for the computationally efficient comparison of large sets of samples based on their LC-MSMS profiles \cite{gaudry_2022}. The first step is to extract fragment ions and neutral losses from each MSMS spectrum binned from the detected features in so-called “documents” using Spec2Vec \cite{huber_2021}. Then, for a given sample, all the documents created are aggregated based on word occurrences to form a fingerprint (a MEMO vector). The MEMO strategy exploits the advantages of LC, namely its separation power (thus simplifying the chemical complexity of the sample being analyzed and allowing resolution of isomerisms) while avoiding the disadvantages of RT-based alignment since MEMO vectors contain only mass spectrometry information. Here we'll implement a stochastic comparison of MEMO vectors $\M(\D_i')$ and $\M(\D_i)$ using a per entry error rate $\epsilon$ to be inferred from the data.
 
 %----------------------------------------------------------------------------------------
 %	THESIS CONTENT - APPENDICES
@@ -355,4 +355,4 @@ To compare the resulting LC-MSMS profile $\D_i'$ to $\D_i$, we will then take ad
 
 %----------------------------------------------------------------------------------------
 
-\end{document}  
+\end{document}
