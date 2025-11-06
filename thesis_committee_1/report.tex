@@ -100,12 +100,8 @@
 
 \date{\today} % Remove date
 \author[1,2]{Marco Visani}
-\author[1,2]{Madleina Caduff}
-\author[1,2]{Daniel Wegmann}
-\author[1,2,3]{Pierre-Marie Allard}
 \affil[1]{Department of Biology, University of Fribourg, 1700 Fribourg, Switzerland}
 \affil[2]{Swiss Institute of Bioinformatics, 1700 Fribourg, Switzerland}
-\affil[3]{Corresponding author, \href{mailto:pierre-marie.allard@unifr.ch}{pierre-marie.allard@unifr.ch}}
 
 \begin{document}
 
@@ -123,34 +119,32 @@ After training and validation, I expect the model to predict the likelihood of e
 \subsection{WP 1}
 Main project of my PhD.
 
-We assume that the pattern of presence and absence is modulated by similarities within each dimension. For instance, closely related species may share a similar set of NPs and NPs related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a \href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov Random Field} (MRF) approach.
+We assume that the pattern of presence and absence is described by similarities within each dimension. For instance, closely related species may share a similar set of NPs and NPs related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a \href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov Random Field} (MRF) approach.
 
-The first months were dedicated to my C++ training. I started with some simple implementations for the model. We started with some bitwise operations, class creation, familiarization with the tools developed in Daniel Wegmann's lab.
+The first months were dedicated to my C++ training. I started with some simple implementations for the model (bitwise operations, class creation, etc.) and I familiarized myself with the tools developed in Daniel Wegmann's lab.
 
-
-for the different storage vectors. Given the huge amount of data, we store in a single uint64 the state of the node (1 or 0), its coordinate, and the number of times it was a 1. This allowed me to understand some bitwise operations, how to create classes and the use of constructors.
-
-A couple of adjustments were done compared to the model in the grant.
+After having a first version of the model, we performed some simulations to check if the model could infer from data correctly. The simulations allowed us to find some errors in the inference, and make some adjustments to the model. We changed the following equations.
 \begin{equation}
 	\bLambda_c =
 	\begin{pmatrix}
 		-\alpha_c  & \alpha_c    \\
 		1-\alpha_c & \alpha_c -1 \\
 	\end{pmatrix}
+	\label{eq:rate matrix}
 \end{equation}
-We changed from $\mu_0$ and $\mu_1$ to a single parameter $\alpha$ which is the change rate to go from $0$ to $1$.
+The rate matrix as now a single parameter $\alpha$ that models the change rate. This changes the transition probabilities between parent node $p(n)$ and $n$ to :
 
 \begin{equation}
 	\bP(n) = \exp(\bLambda_c \nu_c b(n)).
 \end{equation}
-We now have an additional parameter $\nu_c$	which is the rate parameter of the clique. With the same prior for all the cliques.
 
-Root state probabilities are given by the stationary distribution of the Markov chain:
+Calculating the root state probabilities then gives :
 \begin{equation}
 	\label{eq:stationary distribution}
 	\bP_{\infty} = \left(1-\alpha_c, \alpha_c\right).
 \end{equation}
 
+Furthermore, we added an error rate parameter to the probability of LOTUS given the Markov Field:
 
 \begin{equation}
 	\P(L_{ms}|\x(m,s), R_{ms}) =
@@ -161,26 +155,36 @@ Root state probabilities are given by the stationary distribution of the Markov 
 		1- R_{ms} \quad  & \mathrm{if\ } \x(m,s)=1, L_{ms} = 0.
 	\end{cases}
 \end{equation}
-Added an error rate $\epsilon$ in case a molecule was wrongly added to LOTUS.
+
+Finally, the probability of discovery $R_{ms}$ was changed to the following:
 
 \begin{equation}
 	R_{ms} = (1 - e^{-\gamma_0 P_m })  (1 - e^{-\gamma_1 Q_s})
 \end{equation}
-Changed equation for research effort. Previously if either of the species or the molecules had a lot of papers, then the research effort would directly go to 1. Now with this change, a lot of papers in both molecules \textit{and} species is required for having a high probability.
 
+According to the grant, the first working package has been achieved in the correct time frame. We have a first working implementation of the model.
 \subsection{WP 2}
-\subsubsection{Context}
-Implementation of mass spec data still in discussion but we are planning to move from ViMMS \cite{wandyViMMSFrameworkDevelop2022} to just using outputs of annotation tools. We might use a combination of Sirius, Metfrag, CFM-ID and maybe weight these outputs.
+The second working package consists in modelling and integrating mass spectrometry data into the model. We originally started with
+
+
+
+Implementation of mass spec data still in discussion, but we are planning to move from ViMMS \cite{wandyViMMSFrameworkDevelop2022} to just using outputs of annotation tools. We might use a combination of Sirius, Metfrag, CFM-ID and maybe weight these outputs.
 
 \subsection{Fake extract}
 We would like to model the \textit{loss} of molecules during the extraction process from Nature to the data analysis.
 
-Plate 3 was performed by a bachelor student, but results are weird, so we'll pass everything again. Plate 1 is done.
+As stated in the grant, we want to model the classes of analytes lost at the stages of extraction, liquid chromatography and mass spectrometry fragmentation. To do so, we have a bought a library of 550 pure natural products that we are going to mix together to simulate a biological extract. This will allow us to estimate the loss of molecules between the Nature and the mass spectrometry analysis. Ideally we would like to integrate this loss into the model.
+
+Additionally we want to pass each pure compound in the mass spec. So far plate 3 was performed by a bachelor student, but results are weird, so we'll pass everything again. Plate 1 is done.
 \section{LOTUS Expanded}
 \subsubsection{Context}
-Along with the PhD, there are some side projects. One of which is the in silico expansion of the molecules in LOTUS thanks to some reaction rules.
-\subsubsection{Need}
-This allows to \textcolor{red}{TODO}
+One of my side projects is to perform the in silico expansion the molecules present in LOTUS. This allows to create molecules that are not present in LOTUS but that could be potential existing natural products. We then want to fragment in silico these molecules. We hope that this would allow to increase the number of annotations we are able to make on real data.
+We hope that we will find some of the molecules we have generated in silico in brand-new research publication such as in the Journal of Natural Products.
+So far, starting from $100'000$ compounds in LOTUS we generated $3\cdot10^6$ in silico compounds. As a first proof that the molecules generated are not completely random, there are about $17'000$ of the compounds that are found in COCONUT which is another natural products databases that doesn't report the biological occurrence of the structure. \\
+Using the in silico molecules for MS2 annotation using the molecules from LOTUS would also allow to a certain taxonomical information aboout this in silco molecule.
+
+
+
 \subsubsection{Task}
 It turns out me generate some molecules that are true natural products so we would like to see if we can create this synergy between: in silco generation of a compound, create its in silico MS2 spectrum, try to detect them in real data, if we do, then expanded that molecule again.
 \subsubsection{Object}
