@@ -18,7 +18,7 @@
 
 
 \refsection{0}
-  \datalist[entry]{nty/global//global/global/global}
+  \datalist[entry]{none/global//global/global/global}
     \entry{rutzLOTUSInitiativeOpen2022}{article}{}{}
       \name{author}{15}{}{%
         {{hash=e51c463078756d31fdbd295c78696ce0}{%
@@ -105,8 +105,8 @@
       \strng{authornamehash}{8e79b9e808f8dac834931e868e24012a}
       \strng{authorfullhash}{d569004f65c0b0de9f57d5cd46f4673a}
       \strng{authorfullhashraw}{d569004f65c0b0de9f57d5cd46f4673a}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Contemporary bioinformatic and chemoinformatic capabilities hold promise to reshape knowledge management, analysis and interpretation of data in natural products research. Currently, reliance on a disparate set of non-standardized, insular, and specialized databases presents a series of challenges for data access, both within the discipline and for integration and interoperability between related fields. The fundamental elements of exchange are referenced structure-organism pairs that establish relationships between distinct molecular structures and the living organisms from which they were identified. Consolidating and sharing such information via an open platform has strong transformative potential for natural products research and beyond. This is the ultimate goal of the newly established LOTUS initiative, which has now completed the first steps toward the harmonization, curation, validation and open dissemination of 750,000+ referenced structure-organism pairs. LOTUS data is hosted on Wikidata and regularly mirrored on https://lotus.naturalproducts.net . Data sharing within the Wikidata framework broadens data access and interoperability, opening new possibilities for community curation and evolving publication models. Furthermore, embedding LOTUS data into the vast Wikidata knowledge graph will facilitate new biological and chemical insights. The LOTUS initiative represents an important advancement in the design and deployment of a comprehensive and collaborative natural products knowledge base.}
@@ -179,8 +179,8 @@
       \strng{authornamehash}{53306088415172eab9b021153b7dd923}
       \strng{authorfullhash}{9f7d072535ab8bc0c260600f00f75f8e}
       \strng{authorfullhashraw}{9f7d072535ab8bc0c260600f00f75f8e}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{shorttitle}
       \field{day}{30}
@@ -211,6 +211,242 @@
       \endverb
       \verb{url}
       \verb https://joss.theoj.org/papers/10.21105/joss.03990
+      \endverb
+    \endentry
+    \entry{duhrkopSIRIUS4Rapid2019}{article}{}{}
+      \name{author}{9}{}{%
+        {{hash=c460e1dc63a8ce60dec74c70476470a0}{%
+           family={Dührkop},
+           familyi={D\bibinitperiod},
+           given={Kai},
+           giveni={K\bibinitperiod}}}%
+        {{hash=3aa11cf7328c528fc992948c555676b5}{%
+           family={Fleischauer},
+           familyi={F\bibinitperiod},
+           given={Markus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=fe2d6c8bc24023bd24eb5b5d1ddabfca}{%
+           family={Ludwig},
+           familyi={L\bibinitperiod},
+           given={Marcus},
+           giveni={M\bibinitperiod}}}%
+        {{hash=87bfa87346b26d5e647fc1b50b684851}{%
+           family={Aksenov},
+           familyi={A\bibinitperiod},
+           given={Alexander\bibnamedelima A.},
+           giveni={A\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=b489b6a1e1a85b5118ca1474885b404e}{%
+           family={Melnik},
+           familyi={M\bibinitperiod},
+           given={Alexey\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=fca24157fc53705d3fdd2b8fbd96d444}{%
+           family={Meusel},
+           familyi={M\bibinitperiod},
+           given={Marvin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=c87f8cdb434cfe0caa0fa62965f528b8}{%
+           family={Dorrestein},
+           familyi={D\bibinitperiod},
+           given={Pieter\bibnamedelima C.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=d33559c1ef2f2c646c61c5818d443284}{%
+           family={Rousu},
+           familyi={R\bibinitperiod},
+           given={Juho},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7b293fa7e7921b48e54f7e763f6e0e0c}{%
+           family={Böcker},
+           familyi={B\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{5b35da55e18557ca035385539a9e4370}
+      \strng{fullhash}{da37d4b30f31f01fc95a974df600db98}
+      \strng{fullhashraw}{da37d4b30f31f01fc95a974df600db98}
+      \strng{bibnamehash}{5b35da55e18557ca035385539a9e4370}
+      \strng{authorbibnamehash}{5b35da55e18557ca035385539a9e4370}
+      \strng{authornamehash}{5b35da55e18557ca035385539a9e4370}
+      \strng{authorfullhash}{da37d4b30f31f01fc95a974df600db98}
+      \strng{authorfullhashraw}{da37d4b30f31f01fc95a974df600db98}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{1548-7091, 1548-7105}
+      \field{journaltitle}{Nature Methods}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{4}
+      \field{shortjournal}{Nat Methods}
+      \field{shorttitle}{{{SIRIUS}} 4}
+      \field{title}{{{SIRIUS}} 4: A Rapid Tool for Turning Tandem Mass Spectra into Metabolite Structure Information}
+      \field{urlday}{14}
+      \field{urlmonth}{2}
+      \field{urlyear}{2023}
+      \field{volume}{16}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{299\bibrangedash 302}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1038/s41592-019-0344-8
+      \endverb
+      \verb{file}
+      \verb /Users/visanim/Zotero/storage/GAC3E7I7/Dührkop et al. - 2019 - SIRIUS 4 a rapid tool for turning tandem mass spe.pdf;/Users/visanim/Zotero/storage/UG4INMPH/Dührkop et al. - 2019 - SIRIUS 4 a rapid tool for turning tandem mass spe.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://www.nature.com/articles/s41592-019-0344-8
+      \endverb
+      \verb{url}
+      \verb http://www.nature.com/articles/s41592-019-0344-8
+      \endverb
+    \endentry
+    \entry{ruttkiesMetFragRelaunchedIncorporating2016}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=23b9dada32bf48abf4915b2d07b40e45}{%
+           family={Ruttkies},
+           familyi={R\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=42df89dbe4a4b73eb793b6ba0d83cbdc}{%
+           family={Schymanski},
+           familyi={S\bibinitperiod},
+           given={Emma\bibnamedelima L.},
+           giveni={E\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=9c29d0496ec2ac633524176392651a27}{%
+           family={Wolf},
+           familyi={W\bibinitperiod},
+           given={Sebastian},
+           giveni={S\bibinitperiod}}}%
+        {{hash=329dc2dcf5e0c1f7c14a16c4f5005590}{%
+           family={Hollender},
+           familyi={H\bibinitperiod},
+           given={Juliane},
+           giveni={J\bibinitperiod}}}%
+        {{hash=430c2a8950013fc7088fcff1903e1c8a}{%
+           family={Neumann},
+           familyi={N\bibinitperiod},
+           given={Steffen},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b2637edf9960c4fab2043365829b3fb}
+      \strng{fullhash}{8f46dd5066594303355ba993e3820f03}
+      \strng{fullhashraw}{8f46dd5066594303355ba993e3820f03}
+      \strng{bibnamehash}{6b2637edf9960c4fab2043365829b3fb}
+      \strng{authorbibnamehash}{6b2637edf9960c4fab2043365829b3fb}
+      \strng{authornamehash}{6b2637edf9960c4fab2043365829b3fb}
+      \strng{authorfullhash}{8f46dd5066594303355ba993e3820f03}
+      \strng{authorfullhashraw}{8f46dd5066594303355ba993e3820f03}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{1758-2946}
+      \field{journaltitle}{Journal of Cheminformatics}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{number}{1}
+      \field{shortjournal}{J Cheminform}
+      \field{shorttitle}{{{MetFrag}} Relaunched}
+      \field{title}{{{MetFrag}} Relaunched: Incorporating Strategies beyond in Silico Fragmentation}
+      \field{urlday}{7}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{volume}{8}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{3}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1186/s13321-016-0115-9
+      \endverb
+      \verb{file}
+      \verb /Users/visanim/Zotero/storage/KGQ5VEYY/Ruttkies et al. - 2016 - MetFrag relaunched incorporating strategies beyond in silico fragmentation.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0115-9
+      \endverb
+      \verb{url}
+      \verb https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0115-9
+      \endverb
+    \endentry
+    \entry{wangCFMIDMoreAccurate2021}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=60af9bc009f709103e587bb92cee1cda}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Fei},
+           giveni={F\bibinitperiod}}}%
+        {{hash=7a0bcda38475044eb5ef4974cc690590}{%
+           family={Liigand},
+           familyi={L\bibinitperiod},
+           given={Jaanus},
+           giveni={J\bibinitperiod}}}%
+        {{hash=79cf80100553fc87d56472d70e7b1e18}{%
+           family={Tian},
+           familyi={T\bibinitperiod},
+           given={Siyang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=4937f43b9e0590f91a40a51c38d25c2e}{%
+           family={Arndt},
+           familyi={A\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4a770d3fea9e460171ec3bbb23b8fceb}{%
+           family={Greiner},
+           familyi={G\bibinitperiod},
+           given={Russell},
+           giveni={R\bibinitperiod}}}%
+        {{hash=0655d6a2a63fa3f139bdd39d69b0c50a}{%
+           family={Wishart},
+           familyi={W\bibinitperiod},
+           given={David\bibnamedelima S.},
+           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{42f02bc97f72167fb88d11b091500262}
+      \strng{fullhash}{773078a85e7225de2be48a82070e0ec5}
+      \strng{fullhashraw}{773078a85e7225de2be48a82070e0ec5}
+      \strng{bibnamehash}{42f02bc97f72167fb88d11b091500262}
+      \strng{authorbibnamehash}{42f02bc97f72167fb88d11b091500262}
+      \strng{authornamehash}{42f02bc97f72167fb88d11b091500262}
+      \strng{authorfullhash}{773078a85e7225de2be48a82070e0ec5}
+      \strng{authorfullhashraw}{773078a85e7225de2be48a82070e0ec5}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{day}{31}
+      \field{issn}{0003-2700, 1520-6882}
+      \field{journaltitle}{Analytical Chemistry}
+      \field{langid}{english}
+      \field{month}{8}
+      \field{number}{34}
+      \field{shortjournal}{Anal. Chem.}
+      \field{shorttitle}{{{CFM-ID}} 4.0}
+      \field{title}{{{CFM-ID}} 4.0: {{More Accurate ESI-MS}}/{{MS Spectral Prediction}} and {{Compound Identification}}}
+      \field{urlday}{9}
+      \field{urlmonth}{4}
+      \field{urlyear}{2024}
+      \field{volume}{93}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{11692\bibrangedash 11700}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1021/acs.analchem.1c01465
+      \endverb
+      \verb{file}
+      \verb /Users/visanim/Zotero/storage/3AB5LI8S/wang-et-al-2021-cfm-id-4-0-more-accurate-esi-ms-ms-spectral-prediction-and-compound-identification.pdf;/Users/visanim/Zotero/storage/6TYM3UJG/Wang et al. - 2021 - CFM-ID 4.0 More Accurate ESI-MSMS Spectral Predi.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://pubs.acs.org/doi/10.1021/acs.analchem.1c01465
+      \endverb
+      \verb{url}
+      \verb https://pubs.acs.org/doi/10.1021/acs.analchem.1c01465
       \endverb
     \endentry
   \enddatalist
