@@ -177,24 +177,11 @@ We therefore decided to shift direction toward directly integrating the outputs 
 At this stage, the specific implementation strategy is still under discussion. Our plan for the coming year is to design a framework that can integrate and weight the outputs of multiple annotation tools, allowing the MRF model to incorporate MS-based evidence in a consistent and scalable way.
 
 
-\subsection{Fake Extract}
-
-An important aspect of this project is to account for the potential \textit{loss} of molecules during the experimental process from their natural occurrence in biological samples to their detection by mass spectrometry. Modeling this loss is essential to better interpret observed absence patterns and to refine the link between experimental data and the true chemical composition of species.
-
-As stated in the grant, our goal is to characterize the classes of analytes that are lost at different stages of the analytical workflow, including extraction, liquid chromatography, and mass spectrometry fragmentation. To achieve this, we have acquired a library of 550 pure natural products, which we plan to mix together to create a “fake extract” that mimics the complexity of a biological sample. This controlled setup will allow us to quantify molecular losses occurring throughout the experimental pipeline, ultimately enabling us to incorporate these biases into the probabilistic model.
+\subsection{Artificial Extract}
+As stated in the grant, we would like to model and include in the Markov Random Field, the potential \textit{loss} of molecules during the experimental process from their presence in Nature to their identification by mass spectrometry (\textit{i.e.} extraction, liquid chromatography, and mass spectrometry fragmentation).
+To achieve this, we have acquired a library of 550 pure natural products, which we plan to mix together to create a “artificial extract” that mimics the complexity of a biological sample. I am hoping that this controlled setup will allow us to quantify molecular losses occurring throughout the experimental pipeline, ultimately enabling us to incorporate these biases into the probabilistic model.
 
 In addition to the mixed extract experiment, we aim to analyze each pure compound individually using mass spectrometry. So far, plate 1 has been successfully processed. Plate 3, previously analyzed by a bachelor student, produced inconsistent results and will therefore be reanalyzed. The remaining plates will also be measured and analyzed in the coming weeks or months. The resulting dataset will form the basis for estimating compound-specific detection probabilities and integrating these estimates into the overall modeling framework.
-
-
-
-
-\subsection{Fake extract}
-We would like to model the \textit{loss} of molecules during the extraction process from Nature to the data analysis.
-
-As stated in the grant, we want to model the classes of analytes lost at the stages of extraction, liquid chromatography and mass spectrometry fragmentation. To do so, we have a bought a library of 550 pure natural products that we are going to mix together to simulate a biological extract. This will allow us to estimate the loss of molecules between the Nature and the mass spectrometry analysis. Ideally we would like to integrate this loss into the model.
-
-Additionally we want to pass each pure compound in the mass spec. So far plate 3 was performed by a bachelor student, but results are weird, so we'll pass everything again. Plate 1 is done. Will need to do the rest and analysis the results. I am planning on doing this in the following weeks/months.
-
 
 \section{LOTUS Expanded}
 
@@ -202,18 +189,9 @@ One of the side projects of my PhD involves the \textit{in silico} expansion of 
 
 To achieve this, we performed an \textit{in silico} expansion starting from approximately $100'000$ compounds in LOTUS, generating a set of about $3 \cdot 10^6$ new molecular structures. These generated compounds can then be fragmented \textit{in silico} to produce predicted MS/MS spectra, which can be compared with experimental data. This process should increase the number of possible annotations in real datasets and help us identify potential natural products that have not yet been reported.
 
-As an initial validation, we compared the generated compounds with entries from COCONUT, another large natural product database that does not include species-level occurrence information. About $17'000$ of the \textit{in silico} molecules overlapped with structures in COCONUT, suggesting that the generation process produces chemically realistic and biologically relevant compounds rather than random ones.
+As an initial validation, we compared the generated compounds with entries from COCONUT\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that does not include species-level occurrence information. About $17'000$ of the \textit{in silico} molecules overlapped with structures in COCONUT, suggesting that the generation process produces chemically realistic and biologically relevant compounds rather than random ones.
 
-In the coming months, we plan to use these \textit{in silico} molecules for MS/MS annotation, leveraging the taxonomic information already available in LOTUS to assign potential biological contexts to the newly generated compounds. We also hope that some of these predicted molecules will later appear in newly published studies, for example in the \textit{Journal of Natural Products}, providing empirical support for our computational predictions.
-
-
-
-
-\section{LOTUS Expanded}
-One of my side projects is to perform the in silico expansion the molecules present in LOTUS. This allows to create molecules that are not present in LOTUS but that could be potential existing natural products. We then want to fragment in silico these molecules. We hope that this would allow to increase the number of annotations we are able to make on real data.
-We hope that we will find some of the molecules we have generated in silico in brand-new research publication such as in the Journal of Natural Products.
-So far, starting from $100'000$ compounds in LOTUS we generated $3\cdot10^6$ in silico compounds. As a first proof that the molecules generated are not completely random, there are about $17'000$ of the compounds that are found in COCONUT which is another natural products databases that doesn't report the biological occurrence of the structure. \\
-Using the in silico molecules for MS2 annotation using the molecules from LOTUS would also allow to a certain taxonomic information about this in silico molecule.
+In the coming months, we plan to use these \textit{in silico} molecules for MS/MS annotation, utilizing the existing taxonomic information already available in LOTUS to give potential biological presence to the newly generated compounds. We also hope that some of these predicted molecules will later appear in newly published studies, for example in the \textit{Journal of Natural Products}, providing empirical support for our computational predictions.
 
 \section{EMI-Monorepo}
 EMI-Monorepo is our rust coded monolith were we are building all the tools for the Earth Metabolome Initiative. Our post-doc Luca is leading the software development of the project. We are building everything in Rust from the backend to the frontend, to the data analysis part.
@@ -234,5 +212,5 @@ I'd like to continue working with Luca in Rust as it is a skill that I want to m
 
 \end{document}
 
-% I am writing the annual report of my PhD in LaTex. I am required to summarize the progress made and outline the planned work for the next year in a written report of 3-4 pages. I've written the skeleton of the report and I want you to help me improve my grammar, make the sentences more coherent and fluid. Each section should always contain a context, a task and a need (why) I do this. What I did and what I'm planning to do. 
+% I am writing the annual report of my PhD in LaTex. I am required to summarize the progress made and outline the planned work for the next year in a written report of 3-4 pages. I've written the skeleton of the report and I want you to help me improve my grammar, make the sentences more coherent and fluid. Each section should always contain a context, a task and a need (why) I do this. What I did and what I'm planning to do. Make the sentences clear and simple. 
 % I'll give you the sections one after each other. Here is one section : 

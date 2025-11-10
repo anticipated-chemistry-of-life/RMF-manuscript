@@ -449,6 +449,77 @@
       \verb https://pubs.acs.org/doi/10.1021/acs.analchem.1c01465
       \endverb
     \endentry
+    \entry{sorokinaCOCONUTOnlineCollection2021}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=7f1e6205023a3113ec4c83509f250a6f}{%
+           family={Sorokina},
+           familyi={S\bibinitperiod},
+           given={Maria},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7c3c48dc2939a411b65a46fd2cff8862}{%
+           family={Merseburger},
+           familyi={M\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=5fb0b44fd80406d2112fe9be081a8a11}{%
+           family={Rajan},
+           familyi={R\bibinitperiod},
+           given={Kohulan},
+           giveni={K\bibinitperiod}}}%
+        {{hash=db0d573f78e3a8cfc39030995711dc1e}{%
+           family={Yirik},
+           familyi={Y\bibinitperiod},
+           given={Mehmet\bibnamedelima Aziz},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=f5654fd44a464efae4624efef1ab4e8b}{%
+           family={Steinbeck},
+           familyi={S\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d63a86f4f68df865df575a6cc7de8772}
+      \strng{fullhash}{82afaa3a345b26ce3538935308e80ffb}
+      \strng{fullhashraw}{82afaa3a345b26ce3538935308e80ffb}
+      \strng{bibnamehash}{d63a86f4f68df865df575a6cc7de8772}
+      \strng{authorbibnamehash}{d63a86f4f68df865df575a6cc7de8772}
+      \strng{authornamehash}{d63a86f4f68df865df575a6cc7de8772}
+      \strng{authorfullhash}{82afaa3a345b26ce3538935308e80ffb}
+      \strng{authorfullhashraw}{82afaa3a345b26ce3538935308e80ffb}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Abstract Natural products (NPs) are small molecules produced by living organisms with potential applications in pharmacology and other industries as many of them are bioactive. This potential raised great interest in NP research around the world and in different application fields, therefore, over the years a multiplication of generalistic and thematic NP databases has been observed. However, there is, at this moment, no online resource regrouping all known NPs in just one place, which would greatly simplify NPs research and allow computational screening and other in silico applications. In this manuscript we present the online version of the COlleCtion of Open Natural prodUcTs (COCONUT): an aggregated dataset of elucidated and predicted NPs collected from open sources and a web interface to browse, search and easily and quickly download NPs. COCONUT web is freely available at https://coconut.naturalproducts.net .}
+      \field{issn}{1758-2946}
+      \field{journaltitle}{Journal of Cheminformatics}
+      \field{langid}{english}
+      \field{month}{12}
+      \field{number}{1}
+      \field{shortjournal}{J Cheminform}
+      \field{shorttitle}{{{COCONUT}} Online}
+      \field{title}{{{COCONUT}} Online: {{Collection}} of {{Open Natural Products}} Database}
+      \field{urlday}{10}
+      \field{urlmonth}{11}
+      \field{urlyear}{2025}
+      \field{volume}{13}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{2}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1186/s13321-020-00478-9
+      \endverb
+      \verb{file}
+      \verb /Users/visanim/Zotero/storage/DQEJHUDA/Sorokina et al. - 2021 - COCONUT online Collection of Open Natural Products database.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://jcheminf.biomedcentral.com/articles/10.1186/s13321-020-00478-9
+      \endverb
+      \verb{url}
+      \verb https://jcheminf.biomedcentral.com/articles/10.1186/s13321-020-00478-9
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
