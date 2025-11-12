@@ -124,9 +124,9 @@ My PhD work focuses on developing a probabilistic model that integrates the know
 \subsection{WP 1}
 We assume that the pattern of presence and absence of molecules in species is described by similarities within each dimension. For instance, closely related species may share a similar set of NPs and NPs related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a \href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov Random Field} (MRF) approach.
 
-The first months of my PhD were dedicated to developing the technical skills to implement this model. To develop my \textit{C++} programming skills, I started by creating basic model components such as bitwise operations, class design and \textit{C++} best practices. I also familiarized myself with the software tools available in Daniel Wegmann's lab.
+The first months of my PhD were dedicated to developing the technical skills to implement this model. To develop my \textit{C++} programming skills, I started by creating basic model components such as bitwise operations, class design and \textit{C++} best practices. I also familiarized myself with \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{the software tools available in Daniel Wegmann's lab.}{is there a repo or a list of these. Which ones in particular ?}
 
-Once the first version of the model was implemented, we performed some simulations to evaluate whether the inference procedure could accurately recover known parameters from synthetic data. These simulations revealed some issues in the inference, which led to some modifications. In particular, we changed the rate matrix to depend on a single parameter $\alpha_c$, representing the rate of change from a $0$ to a $1$:
+Once the first version of the model was implemented, we performed some simulations to evaluate whether the inference procedure could accurately recover known parameters from synthetic data. These simulations revealed some issues in the inference, which led to some modifications. In particular, we changed the rate matrix to depend on a single parameter $\alpha_c$, representing \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{the rate of change from a $0$ to a $1$:}{overall this is also quite abrupt. YOu should reallytake the reader by the hand. Typically I would have a small tree diagram were you illustrate this concept of rate of change.}
 
 
 \begin{equation}
@@ -149,7 +149,7 @@ From this, the stationary distribution of the root state is derived as:
 	\label{eq:stationary distribution}
 \end{equation}
 
-To improve the robustness of the model against observational noise, we also introduced an error rate parameter $\epsilon$ such that:
+To improve the robustness of the model against observational noise, we also introduced an error rate parameter $\epsilon$ \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{such that:}{would be worth traducing in lay terms what are the four cases. E.g. case 1 \epsilon is the probability of observing a molecule when it is not present ... etc}
 \begin{equation}
 	\P(L_{ms}|\x(m,s), R_{ms}) =
 	\begin{cases}
@@ -165,7 +165,7 @@ Finally, the probability of discovery $R_{ms}$ was redefined as:
 	R_{ms} = (1 - e^{-\gamma_0 P_m })  (1 - e^{-\gamma_1 Q_s})
 \end{equation}
 
-Overall, the objectives defined in the first work package (WP1) were achieved within the expected time frame: we now have a first working implementation of the MRF model that can simulate and infer molecule-species occurrence patterns.
+\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Overall, the objectives defined in the first work package (WP1) were achieved within the expected time frame: we now have a first working implementation of the MRF model that can simulate and infer molecule-species occurrence patterns.}{This seems very optimistic as a statement given what we have in hands at the moment no ? I am thinking in particular about the two cases of simulation of the Asterales and Asteraceae set ... The TAC is really the place to discuss current issues and clocking steps not (only) to show what worked.}
 
 
 \subsection{WP 2}
