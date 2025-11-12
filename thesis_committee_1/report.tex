@@ -212,13 +212,16 @@ In this approach, each input molecule is systematically fragmented by breaking a
 
 When analyzing a mass spectrum, we can then iterate over all nodes in the graph and check whether a fragment mass matches any of the observed peaks (within a defined tolerance). If a match is found, the corresponding intensity is assigned to that fragment and propagated to all its parent molecules in the graph.
 
-Preliminary tests of this method have shown promising results. In several cases, the correct molecule appears within the top 1 to 7 ranked candidates. Even when the top-ranked molecule is not the exact match, the highest-ranking candidates tend to be structurally similar to the true compound, which suggests that the method captures at least some chemical relationships.
+\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Preliminary tests of this method have shown promising results.}{Maybe show some preliminary results. Also mention what approach you are using for the brute fragmentation.} \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In several cases, the correct molecule appears within the top 1 to 7 ranked candidates. Even when the top-ranked molecule is not the exact match, the highest-ranking candidates tend to be structurally similar to the true compound, which suggests that the method captures at least some chemical relationships.}{Here also for such statement please output a table, a plot and code + dataset used to generate them}
 
-Given these interesting preliminary results, I am \pdfmarkupcomment[markup=StrikeOut,color=red]{motivated to continue developing this approach}{popup comment} and explore its potential as a tool for metabolite annotation. One of its main advantages is that it does not rely on machine learning; instead, the fragmentation rules can be iteratively refined should we ever want to. In the coming months, I plan to continue developing the tool and assess its performance against existing annotation tools.
+Given these interesting preliminary results, I am motivated to continue developing this approach and explore its potential as a tool for metabolite annotation. One of its main advantages is that it does not rely on machine learning; instead, the fragmentation rules can be iteratively refined should we ever want to. In the coming months, I plan to continue developing the tool and assess its performance against existing annotation tools.
 
 \section{Perspectives}
 
-In the coming year, I focus and continue working on the following aspects. First, I will integrate MS/MS (MS2) data into the Markov Random Field (MRF) model and to design a method for converting the outputs of various annotation tools (such as SIRIUS, MetFrag, and CFM-ID) into a format compatible with the MRF. This step is essential for linking experimental mass spectrometry evidence with computational predictions and for improving the model's accuracy in estimating molecular occurrences across species.
+\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In the coming year, I focus and continue working on the following aspects. 
+}{I see a lot of focus overall on the side projects. Remind that they should remain what they are, hence side project. Please detail a bit more what you would see as next steps for the ACOL project it self. Even if these are not clear, even if they look sketch. This will be the occasion to discuss and plan for the next year.}
+
+First, I will integrate MS/MS (MS2) data into the Markov Random Field (MRF) model and design a method for converting the outputs of various annotation tools (such as SIRIUS, MetFrag, and CFM-ID) into a format compatible with the MRF. This step is essential for linking experimental mass spectrometry evidence with computational predictions and for improving the model's accuracy in estimating molecular occurrences across species.
 
 I also plan to complete and publish a short paper describing the \textit{LOTUS Expanded} project. Additional validation of the generated compounds is still required, but this work could provide valuable insights into the unexplored regions of natural product chemical space.
 
@@ -232,3 +235,4 @@ Finally, I plan to further investigate the \textit{Frag-Graph} concept, which ha
 
 % I am writing the annual report of my PhD in LaTex. I am required to summarize the progress made and outline the planned work for the next year in a written report of 3-4 pages. I've written the skeleton of the report and I want you to help me improve my grammar, make the sentences more coherent and fluid. Each section should always contain a context, a task and a need (why I do this, What I did, and what I'm planning to do). Make the sentences clear and simple. 
 % I'll give you the sections one after each other. Here is one section : 
+% ^^^^^^ Youhouuu :) Bonjour Marco ! Who are you talking to ? 
