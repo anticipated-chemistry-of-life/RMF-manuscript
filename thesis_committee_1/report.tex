@@ -16,7 +16,9 @@
 \usepackage{graphicx}
 \usepackage{lineno} % for line numbering
 \usepackage{setspace} % for double-spaced text
-\newcommand{\hl}[1]{\textcolor{red}{#1}}
+\usepackage{soul}                 % optional; pdfcomment would pull it anyway
+\sethlcolor{yellow}               % or any color you like (background)
+\newcommand{\alert}[1]{\textcolor{red}{#1}}  % for red *text* instead of highlight
 \usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry} % for margins
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, calc, fit, tikzmark, bayesnet}
@@ -26,6 +28,8 @@
 \usepackage{sidecap}
 \sidecaptionvpos{figure}{t}
 \usepackage[labelfont=bf,font={it}]{caption}
+\usepackage[author={Default Reviewer}]{pdfcomment}
+
 
 \setcounter{figure}{-1}
 
@@ -111,7 +115,7 @@
 \tableofcontents
 
 \section{Introduction}
-Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been essential resources for the life sciences. Until recently, no equivalent resource existed for small molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was designed to address this issue, and forms currently the most comprehensive collection of natural products (NP) occurrences. It however gathers compounds physically isolated from species. While this ensures high confidence, the process of extraction and isolation is too slow to realistically document the chemical diversity of life. To address this issue, we explore two directions: experimental and computational. On one side, the Earth Metabolome Initiative will establish an open, linked knowledge base documenting the metabolome of all living organisms. In parallel, we develop computational strategies to anticipate the chemical constitution of species based on prior knowledge.
+Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been essential resources for the life sciences. Until recently, no equivalent resource existed for small molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was designed to address this issue, and forms currently the most comprehensive collection of natural products (NP) occurrences. It however\pdfmarkupcomment[author={PMA},markup=Highlight,color={red}]{ }{miss: mostly}gathers compounds physically isolated from species.\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{ While this ensures high confidence, the process of extraction and isolation is too slow to realistically document the chemical diversity of life.}{You can also mention and briefly describe the publication bias (only new and / or bioactive NPs are published)} To address this issue, we explore two directions: experimental and computational. On one side, the \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Earth Metabolome Initiative}{add hyperlink to website, ressources and tools as much as possible. Linked Open Data starts by these small steps} will establish an open, linked knowledge base documenting the metabolome of all living organisms. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In parallel,}{Here this is too abrupt. Its great that you have followed the CNTO structures. You can also do it within a paragraph. E.g. in this case you said why we did LOTUS then why we do EMI. You have to detail more on why we do ACOL. EMI will be lenghty, takes decades, cost millions ... among others.} we develop computational strategies to anticipate the chemical constitution of species based on prior knowledge.
 
 My PhD work focuses on developing a probabilistic model that integrates the knowledge from LOTUS with large-scale mass spectrometry datasets to predict species metabolomes and estimate the likelihood of encountering specific natural products across the tree of life. After training and validation, the model should be able to predict the probability of finding a given molecule in a given species, even if that compound has never been experimentally detected in it before.
 
@@ -123,6 +127,7 @@ We assume that the pattern of presence and absence of molecules in species is de
 The first months of my PhD were dedicated to developing the technical skills to implement this model. To develop my \textit{C++} programming skills, I started by creating basic model components such as bitwise operations, class design and \textit{C++} best practices. I also familiarized myself with the software tools available in Daniel Wegmann's lab.
 
 Once the first version of the model was implemented, we performed some simulations to evaluate whether the inference procedure could accurately recover known parameters from synthetic data. These simulations revealed some issues in the inference, which led to some modifications. In particular, we changed the rate matrix to depend on a single parameter $\alpha_c$, representing the rate of change from a $0$ to a $1$:
+
 
 \begin{equation}
 	\bLambda_c =
@@ -209,7 +214,7 @@ When analyzing a mass spectrum, we can then iterate over all nodes in the graph 
 
 Preliminary tests of this method have shown promising results. In several cases, the correct molecule appears within the top 1 to 7 ranked candidates. Even when the top-ranked molecule is not the exact match, the highest-ranking candidates tend to be structurally similar to the true compound, which suggests that the method captures at least some chemical relationships.
 
-Given these interesting preliminary results, I am motivated to continue developing this approach and explore its potential as a tool for metabolite annotation. One of its main advantages is that it does not rely on machine learning; instead, the fragmentation rules can be iteratively refined should we ever want to. In the coming months, I plan to continue developing the tool and assess its performance against existing annotation tools.
+Given these interesting preliminary results, I am \pdfmarkupcomment[markup=StrikeOut,color=red]{motivated to continue developing this approach}{popup comment} and explore its potential as a tool for metabolite annotation. One of its main advantages is that it does not rely on machine learning; instead, the fragmentation rules can be iteratively refined should we ever want to. In the coming months, I plan to continue developing the tool and assess its performance against existing annotation tools.
 
 \section{Perspectives}
 

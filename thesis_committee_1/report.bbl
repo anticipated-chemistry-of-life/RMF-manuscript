@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.3 $
+% $ biblatex bbl format version 3.2 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -18,8 +18,8 @@
 
 
 \refsection{0}
-  \datalist[entry]{none/global//global/global/global}
-    \entry{rutzLOTUSInitiativeOpen2022}{article}{}{}
+  \datalist[entry]{none/global//global/global}
+    \entry{rutzLOTUSInitiativeOpen2022}{article}{}
       \name{author}{15}{}{%
         {{hash=e51c463078756d31fdbd295c78696ce0}{%
            family={Rutz},
@@ -99,12 +99,10 @@
       }
       \strng{namehash}{8e79b9e808f8dac834931e868e24012a}
       \strng{fullhash}{d569004f65c0b0de9f57d5cd46f4673a}
-      \strng{fullhashraw}{d569004f65c0b0de9f57d5cd46f4673a}
       \strng{bibnamehash}{8e79b9e808f8dac834931e868e24012a}
       \strng{authorbibnamehash}{8e79b9e808f8dac834931e868e24012a}
       \strng{authornamehash}{8e79b9e808f8dac834931e868e24012a}
       \strng{authorfullhash}{d569004f65c0b0de9f57d5cd46f4673a}
-      \strng{authorfullhashraw}{d569004f65c0b0de9f57d5cd46f4673a}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -138,7 +136,7 @@
       \verb https://elifesciences.org/articles/70780
       \endverb
     \endentry
-    \entry{wandyViMMSFrameworkDevelop2022}{article}{}{}
+    \entry{wandyViMMSFrameworkDevelop2022}{article}{}
       \name{author}{6}{}{%
         {{hash=87892caecd9ecb82c107f4c654345504}{%
            family={Wandy},
@@ -173,12 +171,10 @@
       }
       \strng{namehash}{53306088415172eab9b021153b7dd923}
       \strng{fullhash}{9f7d072535ab8bc0c260600f00f75f8e}
-      \strng{fullhashraw}{9f7d072535ab8bc0c260600f00f75f8e}
       \strng{bibnamehash}{53306088415172eab9b021153b7dd923}
       \strng{authorbibnamehash}{53306088415172eab9b021153b7dd923}
       \strng{authornamehash}{53306088415172eab9b021153b7dd923}
       \strng{authorfullhash}{9f7d072535ab8bc0c260600f00f75f8e}
-      \strng{authorfullhashraw}{9f7d072535ab8bc0c260600f00f75f8e}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
@@ -213,7 +209,7 @@
       \verb https://joss.theoj.org/papers/10.21105/joss.03990
       \endverb
     \endentry
-    \entry{duhrkopSIRIUS4Rapid2019}{article}{}{}
+    \entry{duhrkopSIRIUS4Rapid2019}{article}{}
       \name{author}{9}{}{%
         {{hash=c460e1dc63a8ce60dec74c70476470a0}{%
            family={Dührkop},
@@ -263,12 +259,10 @@
       }
       \strng{namehash}{5b35da55e18557ca035385539a9e4370}
       \strng{fullhash}{da37d4b30f31f01fc95a974df600db98}
-      \strng{fullhashraw}{da37d4b30f31f01fc95a974df600db98}
       \strng{bibnamehash}{5b35da55e18557ca035385539a9e4370}
       \strng{authorbibnamehash}{5b35da55e18557ca035385539a9e4370}
       \strng{authornamehash}{5b35da55e18557ca035385539a9e4370}
       \strng{authorfullhash}{da37d4b30f31f01fc95a974df600db98}
-      \strng{authorfullhashraw}{da37d4b30f31f01fc95a974df600db98}
       \field{sortinit}{3}
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
@@ -303,7 +297,7 @@
       \verb http://www.nature.com/articles/s41592-019-0344-8
       \endverb
     \endentry
-    \entry{ruttkiesMetFragRelaunchedIncorporating2016}{article}{}{}
+    \entry{ruttkiesMetFragRelaunchedIncorporating2016}{article}{}
       \name{author}{5}{}{%
         {{hash=23b9dada32bf48abf4915b2d07b40e45}{%
            family={Ruttkies},
@@ -333,12 +327,10 @@
       }
       \strng{namehash}{6b2637edf9960c4fab2043365829b3fb}
       \strng{fullhash}{8f46dd5066594303355ba993e3820f03}
-      \strng{fullhashraw}{8f46dd5066594303355ba993e3820f03}
       \strng{bibnamehash}{6b2637edf9960c4fab2043365829b3fb}
       \strng{authorbibnamehash}{6b2637edf9960c4fab2043365829b3fb}
       \strng{authornamehash}{6b2637edf9960c4fab2043365829b3fb}
       \strng{authorfullhash}{8f46dd5066594303355ba993e3820f03}
-      \strng{authorfullhashraw}{8f46dd5066594303355ba993e3820f03}
       \field{sortinit}{4}
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
@@ -373,7 +365,7 @@
       \verb https://jcheminf.biomedcentral.com/articles/10.1186/s13321-016-0115-9
       \endverb
     \endentry
-    \entry{wangCFMIDMoreAccurate2021}{article}{}{}
+    \entry{wangCFMIDMoreAccurate2021}{article}{}
       \name{author}{6}{}{%
         {{hash=60af9bc009f709103e587bb92cee1cda}{%
            family={Wang},
@@ -408,12 +400,10 @@
       }
       \strng{namehash}{42f02bc97f72167fb88d11b091500262}
       \strng{fullhash}{773078a85e7225de2be48a82070e0ec5}
-      \strng{fullhashraw}{773078a85e7225de2be48a82070e0ec5}
       \strng{bibnamehash}{42f02bc97f72167fb88d11b091500262}
       \strng{authorbibnamehash}{42f02bc97f72167fb88d11b091500262}
       \strng{authornamehash}{42f02bc97f72167fb88d11b091500262}
       \strng{authorfullhash}{773078a85e7225de2be48a82070e0ec5}
-      \strng{authorfullhashraw}{773078a85e7225de2be48a82070e0ec5}
       \field{sortinit}{5}
       \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
@@ -449,7 +439,7 @@
       \verb https://pubs.acs.org/doi/10.1021/acs.analchem.1c01465
       \endverb
     \endentry
-    \entry{sorokinaCOCONUTOnlineCollection2021}{article}{}{}
+    \entry{sorokinaCOCONUTOnlineCollection2021}{article}{}
       \name{author}{5}{}{%
         {{hash=7f1e6205023a3113ec4c83509f250a6f}{%
            family={Sorokina},
@@ -479,12 +469,10 @@
       }
       \strng{namehash}{d63a86f4f68df865df575a6cc7de8772}
       \strng{fullhash}{82afaa3a345b26ce3538935308e80ffb}
-      \strng{fullhashraw}{82afaa3a345b26ce3538935308e80ffb}
       \strng{bibnamehash}{d63a86f4f68df865df575a6cc7de8772}
       \strng{authorbibnamehash}{d63a86f4f68df865df575a6cc7de8772}
       \strng{authornamehash}{d63a86f4f68df865df575a6cc7de8772}
       \strng{authorfullhash}{82afaa3a345b26ce3538935308e80ffb}
-      \strng{authorfullhashraw}{82afaa3a345b26ce3538935308e80ffb}
       \field{sortinit}{6}
       \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
