@@ -1,5 +1,7 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage[utf8]{inputenc}
+\usepackage{subcaption}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xcolor} % Required for specifying custom colours
 \usepackage[colorinlistoftodos]{todonotes}
@@ -21,17 +23,17 @@
 \newcommand{\alert}[1]{\textcolor{red}{#1}}  % for red *text* instead of highlight
 \usepackage[left=2.5cm, right=2.5cm, top=3cm, bottom=3cm]{geometry} % for margins
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta, calc, fit, tikzmark, bayesnet}
-\usepackage{amsmath,amsfonts}
+\usetikzlibrary{arrows.meta, calc, fit, tikzmark, bayesnet, automata,positioning}
+\usepackage{amsmath,amsfonts,amsthm}
 \usepackage{bbm}
 \usepackage{authblk}
 \usepackage{sidecap}
 \sidecaptionvpos{figure}{t}
 \usepackage[labelfont=bf,font={it}]{caption}
 \usepackage[author={Default Reviewer}]{pdfcomment}
-
-
-\setcounter{figure}{-1}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+\newtheorem*{example*}{Example}
 
 
 %%%%%%%%%%%%%%%%
@@ -115,7 +117,7 @@
 \tableofcontents
 
 \section{Introduction}
-Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been essential resources for the life sciences. Until recently, no equivalent resource existed for small molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was designed to address this issue, and forms currently the most comprehensive collection of natural products (NP) occurrences. It however mostly gathers compounds physically isolated from species.\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{ While this ensures high confidence, the process of extraction and isolation is too slow to realistically document the chemical diversity of life.}{You can also mention and briefly describe the publication bias (only new and / or bioactive NPs are published)} To address this issue, we explore two directions: experimental and computational. On one side, the \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Earth Metabolome Initiative}{add hyperlink to website, ressources and tools as much as possible. Linked Open Data starts by these small steps} will establish an open, linked knowledge base documenting the metabolome of all living organisms. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In parallel,}{Here this is too abrupt. Its great that you have followed the CNTO structures. You can also do it within a paragraph. E.g. in this case you said why we did LOTUS then why we do EMI. You have to detail more on why we do ACOL. EMI will be lenghty, takes decades, cost millions ... among others.} we develop computational strategies to anticipate the chemical constitution of species based on prior knowledge.
+Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been essential resources for the life sciences. Until recently, no equivalent resource existed for small molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was designed to address this issue, and forms currently the most comprehensive collection of natural products (NP) occurrences. It however mostly gathers compounds physically isolated from species.\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{ While this ensures high confidence, the process of extraction and isolation is too slow to realistically document the chemical diversity of life.}{You can also mention and briefly describe the publication bias (only new and / or bioactive NPs are published)} To address this issue, we explore two directions: experimental and computational. On one side, the \href{https://www.earthmetabolome.org/}{Earth Metabolome Initiative (EMI)} will establish an open, linked knowledge base documenting the metabolome of all living organisms. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In parallel,}{Here this is too abrupt. Its great that you have followed the CNTO structures. You can also do it within a paragraph. E.g. in this case you said why we did LOTUS then why we do EMI. You have to detail more on why we do ACOL. EMI will be lenghty, takes decades, cost millions ... among others.} we develop computational strategies to anticipate the chemical constitution of species based on prior knowledge.
 
 My PhD work focuses on developing a probabilistic model that integrates the knowledge from LOTUS with large-scale mass spectrometry datasets to predict species metabolomes and estimate the likelihood of encountering specific natural products across the tree of life. After training and validation, the model should be able to predict the probability of finding a given molecule in a given species, even if that compound has never been experimentally detected in it before.
 
@@ -126,8 +128,9 @@ We assume that the pattern of presence and absence of molecules in species is de
 
 The first months of my PhD were dedicated to developing the technical skills to implement this model. To develop my \textit{C++} programming skills, I started by creating basic model components such as bitwise operations, class design and \textit{C++} best practices. I also familiarized myself with the software tools available in Daniel Wegmann's lab such as \href{https://bitbucket.org/wegmannlab/coretools/src/master/}{\textit{coretools}} and \href{https://bitbucket.org/wegmannlab/stattools/src/master/}{\textit{stattools}}.
 
-Once the first version of the model was implemented, we performed some simulations to evaluate whether the inference procedure could accurately recover known parameters from synthetic data. These simulations revealed some issues in the inference, which led to some modifications. In particular, we changed the rate matrix to depend on a single parameter $\alpha_c$, representing \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{the rate of change from a $0$ to a $1$:}{overall this is also quite abrupt. YOu should reallytake the reader by the hand. Typically I would have a small tree diagram were you illustrate this concept of rate of change.}
+Once the first version of the model was implemented, we performed some simulations to evaluate whether the inference procedure could accurately recover known parameters from synthetic data. These simulations revealed some issues in the inference, which led to some modifications.
 
+In particular, we modified the rate matrix to depend on a single parameter, $\alpha_c$, representing the rate of change from state $0$ to state $1$, as shown in Equation \ref{eq:rate matrix}.
 
 \begin{equation}
 	\bLambda_c =
@@ -137,6 +140,56 @@ Once the first version of the model was implemented, we performed some simulatio
 	\end{pmatrix}
 	\label{eq:rate matrix}
 \end{equation}
+
+An $\alpha_c$ value close to $1$ indicates that if the parent node is in state $1$, the child node is also very likely to be in state $1$. Conversely, if the parent node is in state $0$, once the child transitions to state $1$, it tends to remain in that state.
+
+\begin{example*}
+	Suppose $\alpha_c = 0.9$. For simplicity, let us set both the branch length and scaling factor $\nu_c$ to $1$. The transition probabilities between a parent node $p(n)$ and its child $n$ are then given by:
+	\begin{equation*}
+		\bP(n) = \exp\left(\begin{bmatrix}
+			-\alpha_c  & \alpha_c    \\
+			1-\alpha_c & \alpha_c -1 \\
+		\end{bmatrix}\right)
+		= \exp\left(\begin{bmatrix}
+			-0.9 & 0.9  \\
+			0.1  & -0.1 \\
+		\end{bmatrix}\right)
+		= \begin{bmatrix}
+			0.431 & 0.569 \\
+			0.063 & 0.937 \\
+		\end{bmatrix}
+	\end{equation*}
+	In this case, during the MCMC updates, if the parent node is $0$, the child node has roughly equal probabilities of being $0$ or $1$. However, if the parent node is $1$, the child node is also very likely to be $1$. This means that once a node transitions to state $1$ during the MCMC updates, it will likely remain in that state.
+\end{example*}
+
+% \begin{figure}[!h]
+% 	\centering
+% 	\begin{subfigure}[t]{0.3\textwidth}
+% 		\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,>={Stealth[round]},
+% 			every state/.style={draw=blue!50,very thick,fill=blue!20}]
+% 			\node[state]	(n_0)	{$0$};
+% 			\node[state]          (n_1) [below =of n_0] {$1$};
+% 			\path[->] (n_0) edge node [left] {$0\to1\to1\to1$} (n_1);
+% 		\end{tikzpicture}
+% 		\caption{High change rate.}
+% 		\label{fig:highAlpha}
+% 	\end{subfigure}
+% 	\quad
+% 	\begin{subfigure}[t]{0.3\textwidth}
+% 		\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,>={Stealth[round]},
+% 			every state/.style={draw=blue!50,very thick,fill=blue!20}]
+% 			\node[state]	(n_2)	[right =of n_0]{$0$};
+% 			\node[state]          (n_3) [below =of n_2] {$0$};
+% 			\path[->] (n_2) edge node [left] {$0\to1\to0\to0$} (n_3);
+% 		\end{tikzpicture}
+% 		\caption{Low change rate.}
+% 		\label{fig:lowAlpha}
+% 	\end{subfigure}
+% 	\caption{Testing the caption \ref{fig:highAlpha}}
+% \end{figure}
+
+
+
 
 This modification adjusts the transition probabilities between a parent node $p(n)$ and its child $n$ as follows:
 \begin{equation}
@@ -174,7 +227,7 @@ Where $P_m$ and $Q_s$ represent the  total number of relevant papers published f
 
 \subsection{WP 2}
 
-The second work package focuses on modeling and integrating mass spectrometry (MS) data into the model developed in WP1. Mass spectrometry is a key source of experimental evidence for chemical composition and metabolite identification. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Integrating such data into the model is essential to link computational predictions with real-world observations and to refine estimates of molecular occurrence across species.}{Notably for the throughput and number of annotation + possibility to repeat multiple times acquisition on the same extracts. This is waht makes this approach and resulting data so interesting compared to LOTUS data. In other words we need both and here, in the case of LCMS, exchange confidence in annotations with coverage.}
+The second work package focuses on modeling and integrating mass spectrometry (MS) data into the model developed in WP1. Mass spectrometry is a key source of experimental evidence for chemical composition and metabolite identification. Integrating such data into the model is essential to connect computational predictions with real-world observations and to refine estimates of molecular occurrence across species. Compared to the physical isolation of compounds, MS enables much higher throughput and a greater number of annotations, while also allowing repeated acquisitions on the same extract. This makes it a powerful and complementary approach to databases like LOTUS, offering broader chemical coverage at the cost of lower annotation confidence.
 
 We initially envisioned the use of ViMMS\cite{wandyViMMSFrameworkDevelop2022}, a simulation tool for MS data, as a potential way to model experimental variability and generate realistic spectra. However, after several discussions with Daniel and Pierre-Marie, we concluded that this approach would not fully meet our objectives. Specifically, ViMMS focuses on simulating acquisition processes, whereas our goal is to incorporate \textit{interpreted} spectral information—i.e., molecular annotations—into the probabilistic model.
 
@@ -195,9 +248,15 @@ One of the side projects of my PhD involves the \textit{in silico} expansion of 
 
 To achieve this, \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{we performed }{This is a follow-up of PAscal master thesis and should be mentionned.}an \textit{in silico} expansion starting from approximately $100'000$ compounds in LOTUS, generating a set of about $3 \cdot 10^6$ new molecular structures. These generated compounds can then be fragmented to produce an \textit{in silico} spectral database (ISDB), which can be compared with experimental data. This process should increase the number of possible annotations in real datasets and help us identify potential natural products that have not yet been reported.
 
-As an initial validation, we compared the generated compounds with entries from COCONUT\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that does not include species occurrence information for all its compounds. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{About $17'000$ (0.57\%) of the \textit{in silico} molecules overlapped with structures in COCONUT, suggesting that the generation process can produce chemically realistic and biologically relevant compounds.}{Are that the figures after substarcting LOTUS from COCONUT ? You should add results as table, plot + link to code used to generate the figs.}
+As an initial validation, we compared the generated compounds with entries from COCONUT\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that does not include species occurrence information for all its compounds. As shown in Figure \ref{fig:vennPlotCoconut} about $17'000$ (0.57\%) of the \textit{in silico} molecules overlapped with structures in COCONUT, suggesting that the generation process can produce chemically realistic and biologically relevant compounds.
 
 I also hope to identify some of the predicted molecules in newly published studies, such as those in the \textit{Journal of Natural Products}, which would provide empirical support for our chemical expansion approach. However, a major limitation is that most publications in this journal do not provide molecular structures in a machine-readable format, such as SMILES. This makes it difficult to perform rapid validation or to develop automated tools capable of detecting these compounds in the literature.
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./images/lotus_exp_vs_coconut.jpeg}
+	\caption{Venn plot between molecules in COCONUT and the generated \textit{in silico} compounds.}
+	\label{fig:vennPlotCoconut}
+\end{figure}
 
 \section{EMI-Monorepo}
 
