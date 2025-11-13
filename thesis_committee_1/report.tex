@@ -117,7 +117,12 @@
 \tableofcontents
 
 \section{Introduction}
-Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been essential resources for the life sciences. Until recently, no equivalent resource existed for small molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was designed to address this issue, and forms currently the most comprehensive collection of natural products (NP) occurrences. It however mostly gathers compounds physically isolated from species.\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{ While this ensures high confidence, the process of extraction and isolation is too slow to realistically document the chemical diversity of life.}{You can also mention and briefly describe the publication bias (only new and / or bioactive NPs are published)} To address this issue, we explore two directions: experimental and computational. On one side, the \href{https://www.earthmetabolome.org/}{Earth Metabolome Initiative (EMI)} will establish an open, linked knowledge base documenting the metabolome of all living organisms. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In parallel,}{Here this is too abrupt. Its great that you have followed the CNTO structures. You can also do it within a paragraph. E.g. in this case you said why we did LOTUS then why we do EMI. You have to detail more on why we do ACOL. EMI will be lenghty, takes decades, cost millions ... among others.} we develop computational strategies to anticipate the chemical constitution of species based on prior knowledge.
+
+Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been essential resources for the life sciences. Until recently, no equivalent resource existed for small molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was designed to address this issue and currently represents the most comprehensive collection of natural product (NP) occurrences. It, however, primarily gathers compounds physically isolated from species. While this ensures high confidence, the process of extraction and isolation is too slow to realistically document the full chemical diversity of life. In addition, most journals in the field tend to favor the publication of novel and/or bioactive compounds, leading to a strong publication bias. As a result, many known or inactive natural products remain unreported, further limiting our understanding of the chemical diversity and dynamics of living systems.
+
+To overcome these limitations, we are developing complementary strategies—both experimental and computational. On the experimental side, the \href{https://www.earthmetabolome.org/}{Earth Metabolome Initiative (EMI)} aims to build an open, linked knowledge base documenting the metabolome of all living organisms. This global effort will convert large-scale metabolomics data and associated metadata into a structured and \href{https://en.wikipedia.org/wiki/Linked_data}{Linked Open Data} format, creating a comprehensive and accessible resource for the scientific community. However, this project will require a substantial amount of time, coordination, and resources, as it relies on the gradual accumulation of high-quality experimental data across species.
+
+In parallel, and to provide earlier insights while EMI is being developed, we pursue a computational approach to \textit{anticipate the chemistry of Life} (ACOL). The goal of this project is to use existing knowledge from LOTUS together with large-scale mass spectrometry datasets to model and predict the chemical composition of species.
 
 My PhD work focuses on developing a probabilistic model that integrates the knowledge from LOTUS with large-scale mass spectrometry datasets to predict species metabolomes and estimate the likelihood of encountering specific natural products across the tree of life. After training and validation, the model should be able to predict the probability of finding a given molecule in a given species, even if that compound has never been experimentally detected in it before.
 
@@ -134,10 +139,10 @@ In particular, we modified the rate matrix to depend on a single parameter, $\al
 
 \begin{equation}
 	\bLambda_c =
-	\begin{pmatrix}
+	\begin{bmatrix}
 		-\alpha_c  & \alpha_c    \\
 		1-\alpha_c & \alpha_c -1 \\
-	\end{pmatrix}
+	\end{bmatrix}
 	\label{eq:rate matrix}
 \end{equation}
 
@@ -191,7 +196,7 @@ An $\alpha_c$ value close to $1$ indicates that if the parent node is in state $
 
 
 
-This modification adjusts the transition probabilities between a parent node $p(n)$ and its child $n$ as follows:
+The modification in Equation \ref{eq:rate matrix} adjusts the transition probabilities between a parent node $p(n)$ and its child $n$ as follows:
 \begin{equation}
 	\bP(n) = \exp(\bLambda_c \nu_c b(n)).
 \end{equation}
@@ -202,7 +207,7 @@ From this, the stationary distribution of the root state is derived as:
 	\label{eq:stationary distribution}
 \end{equation}
 
-Let $L_{ms}=1$ denote a known  occurrence of NP $m$ in species $s$, and let $L_{ms}=0$ denote that no evidence for such an occurrence has been reported, either because the NP m is truly absent in species $s$ or because of a lack of research effort. Let $x(m,s)$ denote the \textit{truth} for NP $m$ and species $s$.
+Let $L_{ms}=1$ denote a known  occurrence of NP $m$ in species $s$, and let $L_{ms}=0$ denote that no evidence for such an occurrence has been reported, either because the NP $m$ is truly absent in species $s$ or because of a lack of research effort. Let $x(m,s)$ denote the \textit{truth} for NP $m$ and species $s$.
 
 To improve the robustness of the model against observational noise, we introduced an error rate parameter $\epsilon$ such that:
 \begin{equation}
@@ -242,21 +247,25 @@ As stated in the grant, we would like to model and include in the Markov Random 
 
 In addition to the artificial extract experiment, we aim to analyze each pure compound individually using mass spectrometry. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{So far, plate 1 has been successfully processed.}{You should resume Jade's bachelor work here. Also mention that you have coached her during these monthes. I would have at least a table of results on plate + associated Venn plots what do we see in pos, neg, both, none etc.} \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Plate 3, previously analyzed by a bachelor student, produced inconsistent results and will therefore be reanalyzed.}{How so ? Do you have results comparing plate 1 and 3 ? Do you have summary of 1 + 3 ?} The remaining plates will also be measured and analyzed in the coming weeks or months.
 
-\section{LOTUS Expanded\pdfcomment[author={PMA},color=orange,icon=Note]{You do not cite nor mention MINES in the paragraph.}}
+\section{LOTUS Expanded}
 
-One of the side projects of my PhD involves the \textit{in silico} expansion of the molecular space covered by LOTUS. The LOTUS database contains experimentally verified natural products, but it only represents a fraction of the chemical diversity that likely exists in nature. To better capture this diversity, we aim to generate new, hypothetical molecules that are chemically plausible yet not currently documented in LOTUS. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{The goal of this task}{Also mention how you view that this side project can contribute to ACOl. Several possibilities of sinergy here ...} is to extend the known chemical space and thereby improve our capacity to annotate real mass spectrometry (MS) data.
+One of the side projects of my PhD involves the \textit{in silico} expansion of the molecular space covered by LOTUS. The LOTUS database contains experimentally verified natural products, but it only represents a fraction of the chemical diversity that likely exists in nature. To better capture this diversity, we aim to generate new, hypothetical molecules that are chemically plausible yet not currently documented in LOTUS. The goal of this task is to extend the known chemical space and thereby improve our capacity to annotate real mass spectrometry (MS) data. In addition, these newly generated molecules could be incorporated into the Markov Random Field model to enable predictions for new and unseen compounds.
 
-To achieve this, \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{we performed }{This is a follow-up of PAscal master thesis and should be mentionned.}an \textit{in silico} expansion starting from approximately $100'000$ compounds in LOTUS, generating a set of about $3 \cdot 10^6$ new molecular structures. These generated compounds can then be fragmented to produce an \textit{in silico} spectral database (ISDB), which can be compared with experimental data. This process should increase the number of possible annotations in real datasets and help us identify potential natural products that have not yet been reported.
+To achieve this, we performed an \textit{in silico} expansion starting from approximately $100'000$ compounds in LOTUS, generating a set of about $3 \cdot 10^6$ new molecular structures. This expansion was carried out using the published tool MINE-Database\cite{jeffryesMINEsOpenAccess2015a,strutzMINE20Enhanced2022}, which was \href{https://github.com/commons-research/MINE-Database}{forked} and further improved by our former Master's student, Pascal Amrein.
+
+These generated compounds can then be fragmented to produce an \textit{in silico} spectral database (ISDB), which can be compared with experimental data. This process should increase the number of possible annotations in real datasets and help us identify potential natural products that have not yet been reported.
 
 As an initial validation, we compared the generated compounds with entries from COCONUT\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that does not include species occurrence information for all its compounds. As shown in Figure \ref{fig:vennPlotCoconut} about $17'000$ (0.57\%) of the \textit{in silico} molecules overlapped with structures in COCONUT, suggesting that the generation process can produce chemically realistic and biologically relevant compounds.
 
-I also hope to identify some of the predicted molecules in newly published studies, such as those in the \textit{Journal of Natural Products}, which would provide empirical support for our chemical expansion approach. However, a major limitation is that most publications in this journal do not provide molecular structures in a machine-readable format, such as SMILES. This makes it difficult to perform rapid validation or to develop automated tools capable of detecting these compounds in the literature.
-\begin{figure}[!h]
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.3\linewidth]{./images/lotus_exp_vs_coconut.jpeg}
+	\includegraphics[width=0.5\linewidth]{./images/lotus_exp_vs_coconut.jpeg}
 	\caption{Venn plot between molecules in COCONUT and the generated \textit{in silico} compounds.}
 	\label{fig:vennPlotCoconut}
 \end{figure}
+
+I also hope to identify some of the predicted molecules in newly published studies, such as those in the \textit{Journal of Natural Products}, which would provide empirical support for our chemical expansion approach. However, a major limitation is that most publications in this journal do not provide molecular structures in a machine-readable format, such as SMILES. This makes it difficult to perform rapid validation or to develop automated tools capable of detecting these compounds in the literature.
+
 
 \section{EMI-Monorepo}
 
@@ -264,7 +273,7 @@ The \href{https://github.com/earth-metabolome-initiative/emi-monorepo}{EMI-Monor
 
 Given the complexity of the portal, Luca occasionally assigns me specific tasks that serve both the project and my own training in Rust programming. This has allowed me to contribute to several (\textit{crates}) within the repository and to better understand the structure and design principles of the software. Over the past months, however, my involvement has decreased as I focused on other aspects of my PhD, and I have not coded in Rust recently.
 
-In the coming year, I aim to re-engage with the EMI-Monorepo and further develop my expertise in Rust. Mastering this language is one of my personal objectives for the PhD. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{I believe that a dedicated chemical library—similar to RDKit but implemented in Rust—would be a valuable contribution to the scientific community and a meaningful way to advance my skills.}{You can mention Daniel Probst proposition + the existing rust crate dealing with rdkit}
+In the coming year, I aim to re-engage with the EMI-Monorepo and further develop my expertise in Rust. Mastering this language is one of my personal objectives for the PhD. I believe that developing a dedicated chemical library—similar to RDKit but implemented in Rust—would be a valuable contribution to the scientific community and a meaningful way to advance my skills. This idea aligns with a proposal from our collaborator Daniel Probst, who suggested developing such a Rust-based chemoinformatics library and invited us to collaborate on it.
 
 
 \section{Frag-Graph}
@@ -281,10 +290,10 @@ Given these interesting preliminary results, I am motivated to continue developi
 
 \section{Perspectives}
 
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In the coming year, I focus and continue working on the following aspects.
-}{I see a lot of focus overall on the side projects. Remind that they should remain what they are, hence side project. Please detail a bit more what you would see as next steps for the ACOL project it self. Even if these are not clear, even if they look sketch. This will be the occasion to discuss and plan for the next year.}
-
+In the coming year, I intend to focus and continue to work on the following aspects.
 First, I will integrate MS/MS (MS2) data into the Markov Random Field (MRF) model and design a method for converting the outputs of various annotation tools (such as SIRIUS, MetFrag, and CFM-ID) into a format compatible with the MRF. This step is essential for linking experimental mass spectrometry evidence with computational predictions and for improving the model's accuracy in estimating molecular occurrences across species.
+
+Regarding WP2, I plan to implement an efficient system for storing and accessing the annotation scores used by the MRF. Each MS run corresponds to a species and can contain thousands of spectra, with each spectrum potentially assigned to multiple candidate molecules. As a result, the volume of data can become extremely large, and we need to determine an effective strategy for managing and querying it. In addition, the scores produced by some annotation tools do not directly represent probabilities, so we must develop a method to appropriately normalize or convert them before integration into the model.
 
 I also plan to complete and publish a short paper describing the \textit{LOTUS Expanded} project. Additional validation of the generated compounds is still required, but this work could provide valuable insights into the unexplored regions of natural product chemical space.
 
@@ -298,4 +307,4 @@ Finally, I plan to further investigate the \textit{Frag-Graph} concept, which ha
 
 % I am writing the annual report of my PhD in LaTex. I am required to summarize the progress made and outline the planned work for the next year in a written report of 3-4 pages. I've written the skeleton of the report and I want you to help me improve my grammar, make the sentences more coherent and fluid. Each section should always contain a context, a task and a need (why I do this, What I did, and what I'm planning to do). Make the sentences clear and simple. 
 % I'll give you the sections one after each other. Here is one section : 
-% ^^^^^^ Youhouuu :) Bonjour Marco ! Who are you talking to ? 
+
