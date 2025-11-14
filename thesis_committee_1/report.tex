@@ -14,6 +14,7 @@
 	linkcolor=mdtRed,
 	urlcolor=mdtRed
 }
+\usepackage{booktabs}
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{lineno} % for line numbering
@@ -135,7 +136,7 @@ The first months of my PhD were dedicated to developing the technical skills to 
 
 Once the first version of the model was implemented, we performed some simulations to evaluate whether the inference procedure could accurately recover known parameters from synthetic data. These simulations revealed some issues in the inference, which led to some modifications.
 
-In particular, we modified the rate matrix to depend on a single parameter, $\alpha_c$, representing the rate of change from state $0$ to state $1$, as shown in Equation \ref{eq:rate matrix}.
+In particular, we modified the rate matrix to depend on a single parameter, $\alpha_c$, representing the rate of change from state $0$ to state $1$, as shown in Equation~\ref{eq:rate matrix}.
 
 \begin{equation}
 	\bLambda_c =
@@ -196,7 +197,7 @@ An $\alpha_c$ value close to $1$ indicates that if the parent node is in state $
 
 
 
-The modification in Equation \ref{eq:rate matrix} adjusts the transition probabilities between a parent node $p(n)$ and its child $n$ as follows:
+The modification in Equation~\ref{eq:rate matrix} adjusts the transition probabilities between a parent node $p(n)$ and its child $n$ as follows:
 \begin{equation}
 	\bP(n) = \exp(\bLambda_c \nu_c b(n)).
 \end{equation}
@@ -247,6 +248,20 @@ As stated in the grant, we would like to model and include in the Markov Random 
 
 In addition to the artificial extract experiment, we aim to analyze each pure compound individually using mass spectrometry. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{So far, plate 1 has been successfully processed.}{You should resume Jade's bachelor work here. Also mention that you have coached her during these monthes. I would have at least a table of results on plate + associated Venn plots what do we see in pos, neg, both, none etc.} \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Plate 3, previously analyzed by a bachelor student, produced inconsistent results and will therefore be reanalyzed.}{How so ? Do you have results comparing plate 1 and 3 ? Do you have summary of 1 + 3 ?} The remaining plates will also be measured and analyzed in the coming weeks or months.
 
+\begin{figure}[!h]
+	\centering
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[scale=0.25]{images/plate_1.jpeg}
+		\caption{Plate 1}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[t]{0.49\textwidth}
+		\includegraphics[scale=0.25]{images/plate_3.jpeg}
+		\caption{Plate 3}
+	\end{subfigure}
+	\caption{Plate 1 and Plate 3 of the ApexBio Natural Products library. In Plate 1, 5 out of 88 molecules were not detected in either positive or negative ionization mode. In contrast, in Plate 3, 17 molecules were not detected.}
+\end{figure}
+
 \section{LOTUS Expanded}
 
 One of the side projects of my PhD involves the \textit{in silico} expansion of the molecular space covered by LOTUS. The LOTUS database contains experimentally verified natural products, but it only represents a fraction of the chemical diversity that likely exists in nature. To better capture this diversity, we aim to generate new, hypothetical molecules that are chemically plausible yet not currently documented in LOTUS. The goal of this task is to extend the known chemical space and thereby improve our capacity to annotate real mass spectrometry (MS) data. In addition, these newly generated molecules could be incorporated into the Markov Random Field model to enable predictions for new and unseen compounds.
@@ -255,14 +270,14 @@ To achieve this, we performed an \textit{in silico} expansion starting from appr
 
 These generated compounds can then be fragmented to produce an \textit{in silico} spectral database (ISDB), which can be compared with experimental data. This process should increase the number of possible annotations in real datasets and help us identify potential natural products that have not yet been reported.
 
-As an initial validation, we compared the generated compounds with entries from COCONUT\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that does not include species occurrence information for all its compounds. As shown in Figure \ref{fig:vennPlotCoconut} about $17'000$ (0.57\%) of the \textit{in silico} molecules overlapped with structures in COCONUT, suggesting that the generation process can produce chemically realistic and biologically relevant compounds.
-
-\begin{figure}[h]
+\begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.5\linewidth]{./images/lotus_exp_vs_coconut.jpeg}
-	\caption{Venn plot between molecules in COCONUT and the generated \textit{in silico} compounds.}
+	\caption{Venn plot between molecules in COCONUT and the generated \textit{in silico} compounds. The number represents the number of unique molecules in each dataset. 16992 molecules from the in-silico expansion can be found in COCONUT, a natural product database.}
 	\label{fig:vennPlotCoconut}
 \end{figure}
+
+As an initial validation, we compared the generated compounds with entries from COCONUT\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that does not include species occurrence information for all its compounds. As shown in Figure~\ref{fig:vennPlotCoconut} about $17'000$ (0.57\%) of the \textit{in silico} molecules overlapped with structures in COCONUT, suggesting that the generation process can produce chemically realistic and biologically relevant compounds.
 
 I also hope to identify some of the predicted molecules in newly published studies, such as those in the \textit{Journal of Natural Products}, which would provide empirical support for our chemical expansion approach. However, a major limitation is that most publications in this journal do not provide molecular structures in a machine-readable format, such as SMILES. This makes it difficult to perform rapid validation or to develop automated tools capable of detecting these compounds in the literature.
 
@@ -284,7 +299,28 @@ In this approach, each input molecule is systematically fragmented by breaking a
 
 When analyzing a mass spectrum, we can then iterate over all nodes in the graph and check whether a fragment mass matches any of the observed peaks (within a defined tolerance). If a match is found, the corresponding intensity is assigned to that fragment and propagated to all its parent molecules in the graph.
 
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Preliminary tests of this method have shown promising results.}{Maybe show some preliminary results. Also mention what approach you are using for the brute fragmentation.} \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{In several cases, the correct molecule appears within the top 1 to 7 ranked candidates. Even when the top-ranked molecule is not the exact match, the highest-ranking candidates tend to be structurally similar to the true compound, which suggests that the method captures at least some chemical relationships.}{Here also for such statement please output a table, a plot and code + dataset used to generate them}
+To test this idea, I generated a fragmentation graph from the molecules in \href{https://zenodo.org/records/14887271}{\textit{ISDB: In Silico DataBase (isdb\_lotus\_pos\_energySum.mgf)}}. Starting from 141,514 molecules, the procedure produced a graph containing 1,656,090 nodes (molecules or fragments) and 3,038,519 edges. I then downloaded the spectra from \href{https://huggingface.co/datasets/roman-bushuiev/MassSpecGym}{MassSpecGym} and randomly sampled 200 of them for evaluation. As shown in Table~\ref{table:FragGraphResults}, even with a very naive fragmentation scheme—simply breaking each bond of the parent molecule and recording the two resulting fragments—the correct molecule appears within the top 7 candidates in more than $50\%$ of the test cases. For 15 spectra, the correct molecule was not retrieved within the ranked results.
+
+These results are far from optimal, but this is expected given how rudimentary the current fragmentation strategy is. The procedure can (and likely should) be improved by incorporating more realistic fragmentation rules or by using better scoring functions than peak intensity alone. The simple bond-breaking approach was inspired by \href{https://github.com/BAMeScience/fiora}{FIORA}, an \textit{in silico} fragmentation algorithm designed to predict MS/MS spectra with high accuracy.
+
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{lr}
+		\toprule
+		       & Rank \\
+		\midrule
+		count  & 185  \\
+		median & 7    \\
+		min    & 1    \\
+		25\%   & 2    \\
+		50\%   & 7    \\
+		75\%   & 28   \\
+		max    & 1390 \\
+		\bottomrule
+	\end{tabular}
+	\caption{Evaluation of 200 randomly sampled spectra from MassSpecGym. Out of 200 spectra, the true inchikey was not found in 15 of them. In half of the spectra, the true inchikey was in the top 7 or better.}
+	\label{table:FragGraphResults}
+\end{table}
 
 Given these interesting preliminary results, I am motivated to continue developing this approach and explore its potential as a tool for metabolite annotation. One of its main advantages is that it does not rely on machine learning; instead, the fragmentation rules can be iteratively refined should we ever want to. In the coming months, I plan to continue developing the tool and assess its performance against existing annotation tools.
 
