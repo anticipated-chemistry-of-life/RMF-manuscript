@@ -121,7 +121,7 @@
 
 Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been
 essential resources for the life sciences. Until recently, no equivalent resource existed for small
-molecules and their producing organisms. The LOTUS\cite{rutzLOTUSInitiativeOpen2022} project was
+molecules and their producing organisms. The LOTUS~\cite{rutzLOTUSInitiativeOpen2022} project was
 designed to address this issue and currently represents the most comprehensive collection of
 natural product (NP) occurrences. It, however, primarily gathers compounds physically isolated from
 species. While this ensures high confidence, the process of extraction and isolation is too slow to
@@ -271,7 +271,14 @@ Where $P_m$ and $Q_s$ represent the total number of relevant papers published fo
 species $s$ respectively and $\gamma_0$ and $\gamma_1$ are positive scalars that are inferred by
 the model.
 
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Overall, the objectives defined in the first work package (WP1) were achieved within the expected time frame: we now have a first working implementation of the MRF model that can simulate and infer molecule-species occurrence patterns.}{This seems very optimistic as a statement given what we have in hands at the moment no ? I am thinking in particular about the two cases of simulation of the Asterales and Asteraceae set ... The TAC is really the place to discuss current issues and clocking steps not (only) to show what worked.}
+Overall, the objectives defined in the first work package (WP1) were achieved within the expected
+time frame: we now have a first working implementation of the MRF model that can simulate and infer
+molecule-species occurrence patterns. However, the current inference is not producing useful
+predictions. For instance, when running the model on a subset of LOTUS (the \textit{Asterales}
+family), it ended up predicting zeros everywhere and treating all known occurrences as
+mistakes—most likely because of the $\epsilon$ parameter we introduced. When fixing the error rate
+to zero, the model instead only recovered the molecules already present in LOTUS and did not
+predict anything new. At this point, I'm not yet sure why the inference behaves this way.
 
 \subsection{WP 2}
 
@@ -284,7 +291,7 @@ throughput and a greater number of annotations, while also allowing repeated acq
 same extract. This makes it a powerful and complementary approach to databases like LOTUS, offering
 broader chemical coverage at the cost of lower annotation confidence.
 
-We initially envisioned the use of ViMMS\cite{wandyViMMSFrameworkDevelop2022}, a simulation tool
+We initially envisioned the use of ViMMS~\cite{wandyViMMSFrameworkDevelop2022}, a simulation tool
 for MS data, as a potential way to model experimental variability and generate realistic spectra.
 However, after several discussions with Daniel and Pierre-Marie, we concluded that this approach
 would not fully meet our objectives. Specifically, ViMMS focuses on simulating acquisition
@@ -292,40 +299,32 @@ processes, whereas our goal is to incorporate \textit{interpreted} spectral info
 molecular annotations—into the probabilistic model.
 
 We therefore decided to shift direction toward directly integrating the outputs and scores produced
-by existing annotation tools such as SIRIUS \cite{duhrkopSIRIUS4Rapid2019}, MetFrag
-\cite{ruttkiesMetFragRelaunchedIncorporating2016}, and CFM-ID \cite{wangCFMIDMoreAccurate2021}.
-These tools provide complementary estimates of molecular identity and structural similarity, which
-can be combined probabilistically to represent confidence in compound–spectrum assignments. Using
-only the scores from these methods, rather than relying on any single tool, would make the approach
-more flexible and robust to future methodological improvements.
+by existing annotation tools such as SIRIUS~\cite{duhrkopSIRIUS4Rapid2019},
+MetFrag~\cite{ruttkiesMetFragRelaunchedIncorporating2016}, and
+CFM-ID~\cite{wangCFMIDMoreAccurate2021}. These tools provide complementary estimates of molecular
+identity and structural similarity, which can be combined probabilistically to represent confidence
+in compound–spectrum assignments. Using only the scores from these methods, rather than relying on
+any single tool, would make the approach more flexible and robust to future methodological
+improvements.
 
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{At this stage, the specific implementation strategy is still under discussion. Our plan for the coming year is to integrate and weight the outputs of multiple annotation tools, allowing the MRF model to incorporate MS-based evidence in a consistent and scalable way.}{You focuss here on the last part (i.e. metabolite annotation. Yopu do not mention that the idea is to model the \textit{whole} LCMS process, what do we loose at the extraction step, at the lc step, at the ionization step etc...)}
+At this stage, the specific implementation strategy is still under discussion. Our plan for the
+coming year is to integrate and weight the outputs of multiple annotation tools, allowing the MRF
+model to incorporate MS-based evidence in a consistent and scalable way.
 
 \subsection{Artificial Extract}
 As stated in the grant, we would like to model and include in the Markov Random Field, the
 potential \textit{loss} of molecules during the experimental process from their presence in Nature
 to their identification by mass spectrometry (\textit{i.e.} extraction, liquid chromatography, and
 mass spectrometry fragmentation).
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{To achieve this, we have acquired a
-	library of 550 pure natural products, which we plan to mix together to create a “artificial
-	extract” that mimics the complexity of a biological sample. I am hoping that this controlled setup
-	will allow us to quantify molecular losses occurring throughout the process, enabling us to
-	incorporate these biases into the MRF model.}{I see this artificial extract as a way to benckmark
-	the ionization and metabolite annotation stages. We are not going to proceed to reextraction of
-	this mix so it would only allows us to benchmark a part of the possible losses.}
-\pdfcomment[author={PMA},color=orange,icon=Note]{While commenting on this issue I realize that we
-	actully want to model losses of molecules but also additions of molecules (notably ions, in source
-	fragments and other degenerted features)}
 
-In addition to the artificial extract experiment, we aim to analyze each pure compound individually
-using mass spectrometry. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{So far,
-	plate 1 has been successfully processed.}{You should resume Jade's bachelor work here. Also mention
-	that you have coached her during these monthes. I would have at least a table of results on plate +
-	associated Venn plots what do we see in pos, neg, both, none etc.}
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Plate 3, previously analyzed by a
-	bachelor student, produced inconsistent results and will therefore be reanalyzed.}{How so ? Do you
-	have results comparing plate 1 and 3 ? Do you have summary of 1 + 3 ?} The remaining plates will
-also be measured and analyzed in the coming weeks or months.
+To achieve this, we have acquired a library of 550 pure natural products, which we plan to mix
+together to create an “artificial extract” that mimics the complexity of a biological sample. The
+goal of this is to quantify the molecular losses that occur during the analytical workflow and
+incorporate these biases into the MRF model. This approach will not allow us to assess losses
+occurring during the extraction step, since we are not re-extracting the mixture; instead, it will
+let us benchmark the ionization and metabolite annotation stages. Also, this extract will also help
+us characterize not only molecular losses but also “additions,” such as ions, in-source fragments,
+and other degenerated features introduced during MS analysis.
 
 \begin{figure}[!h]
 	\centering
@@ -339,7 +338,16 @@ also be measured and analyzed in the coming weeks or months.
 		\caption{Plate 3}
 	\end{subfigure}
 	\caption{Plate 1 and Plate 3 of the ApexBio Natural Products library. In Plate 1, 5 out of 88 molecules were not detected in either positive or negative ionization mode. In contrast, in Plate 3, 17 molecules were not detected.}
+	\label{fig:ApexBioResults}
 \end{figure}
+
+In addition to the artificial extract experiment, we also aim to analyze each pure compound
+individually using mass spectrometry. So far, Plate 1 has been processed, and Plate 3 was analyzed
+by Jade Dandois, a bachelor student whom I coached between February and June of this year. As shown
+in Figure~\ref{fig:ApexBioResults}, Plate 3 displays a noticeably higher number of missing
+molecules than Plate 1, with several compounds absent in both ionization modes. Given the high
+number of missing compounds in Plate 3 I plan to re-run it in the coming weeks, along with the
+remaining plates.
 
 \section{LOTUS Expanded}
 
@@ -446,16 +454,16 @@ an \textit{in silico} fragmentation algorithm designed to predict MS/MS spectra 
 	\centering
 	\begin{tabular}{lr}
 		\toprule
-		      & rank      \\
+		      & rank  \\
 		\midrule
-		count & 464       \\
-		mean  & 30.062500 \\
-		std   & 79.408548 \\
-		min   & 1         \\
-		25\%  & 3         \\
-		50\%  & 10        \\
-		75\%  & 32        \\
-		max   & 1390      \\
+		count & 464   \\
+		mean  & 30.06 \\
+		std   & 79.41 \\
+		min   & 1     \\
+		25\%  & 3     \\
+		50\%  & 10    \\
+		75\%  & 32    \\
+		max   & 1390  \\
 		\bottomrule
 	\end{tabular}
 	\caption{Evaluation of 500 randomly sampled spectra from MassSpecGym. Out of 500 spectra, the true inchikey was not found in 36 of them. In half of the spectra, the true inchikey was in the top 10 or better.}
