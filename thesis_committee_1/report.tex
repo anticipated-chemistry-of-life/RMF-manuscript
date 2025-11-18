@@ -119,16 +119,16 @@
 
 \section{Introduction}
 
-Public databases compiling genes (e.g., GenBank) and proteins (e.g., UniProt) have long been
-essential resources for the life sciences. Until recently, no equivalent resource existed for small
-molecules and their producing organisms. The LOTUS~\cite{rutzLOTUSInitiativeOpen2022} project was
-designed to address this issue and currently represents the most comprehensive collection of
-natural product (NP) occurrences. It, however, primarily gathers compounds physically isolated from
-species. While this ensures high confidence, the process of extraction and isolation is too slow to
-realistically document the full chemical diversity of life. In addition, most journals in the field
-tend to favor the publication of novel and/or bioactive compounds, leading to a strong publication
-bias. As a result, many known or inactive natural products remain unreported, further limiting our
-understanding of the chemical diversity and dynamics of living systems.
+Public databases compiling genes (\textit{e.g.} GenBank) and proteins (\textit{e.g.} UniProt) have
+long been essential resources for the life sciences. Until recently, no equivalent resource existed
+for small molecules and their producing organisms. The LOTUS~\cite{rutzLOTUSInitiativeOpen2022}
+project was designed to address this issue and currently represents the most comprehensive
+collection of natural product (NP) occurrences. It, however, primarily gathers compounds physically
+isolated from species. While this ensures high confidence, the process of extraction and isolation
+is too slow to realistically document the full chemical diversity of life. In addition, most
+journals in the field tend to favor the publication of novel and/or bioactive compounds, leading to
+a strong publication bias. As a result, many known or inactive natural products remain unreported,
+further limiting our understanding of the chemical diversity of living systems.
 
 To overcome these limitations, we are developing complementary strategies—both experimental and
 computational. On the experimental side, the \href{https://www.earthmetabolome.org/}{Earth
@@ -146,10 +146,10 @@ project is to use existing knowledge from LOTUS together with large-scale mass s
 datasets to model and predict the chemical composition of species.
 
 My PhD work focuses on developing a probabilistic model that integrates the knowledge from LOTUS
-with large-scale mass spectrometry datasets to predict species metabolomes and estimate the
-likelihood of encountering specific natural products across the tree of life. After training and
-validation, the model should be able to predict the probability of finding a given molecule in a
-given species, even if that compound has never been experimentally detected in it before.
+with mass spectrometry datasets to predict species metabolomes and estimate the likelihood of
+encountering natural products across the tree of life. After training and validation, the model
+should be able to predict the probability of finding a given molecule in a given species, even if
+that compound has never been experimentally detected in it before.
 
 \section{Markov Random Field}
 
@@ -277,8 +277,8 @@ molecule-species occurrence patterns. However, the current inference is not prod
 predictions. For instance, when running the model on a subset of LOTUS (the \textit{Asterales}
 family), it ended up predicting zeros everywhere and treating all known occurrences as
 mistakes—most likely because of the $\epsilon$ parameter we introduced. When fixing the error rate
-to zero, the model instead only recovered the molecules already present in LOTUS and did not
-predict anything new. At this point, I'm not yet sure why the inference behaves this way.
+to zero, the model only recovered the molecules already present in LOTUS and did not predict
+anything new. At this point, I'm not yet sure why the inference behaves this way.
 
 \subsection{WP 2}
 
@@ -317,15 +317,6 @@ potential \textit{loss} of molecules during the experimental process from their 
 to their identification by mass spectrometry (\textit{i.e.} extraction, liquid chromatography, and
 mass spectrometry fragmentation).
 
-To achieve this, we have acquired a library of 550 pure natural products, which we plan to mix
-together to create an “artificial extract” that mimics the complexity of a biological sample. The
-goal of this is to quantify the molecular losses that occur during the analytical workflow and
-incorporate these biases into the MRF model. This approach will not allow us to assess losses
-occurring during the extraction step, since we are not re-extracting the mixture; instead, it will
-let us benchmark the ionization and metabolite annotation stages. Also, this extract will also help
-us characterize not only molecular losses but also “additions,” such as ions, in-source fragments,
-and other degenerated features introduced during MS analysis.
-
 \begin{figure}[!h]
 	\centering
 	\begin{subfigure}[t]{0.49\textwidth}
@@ -340,6 +331,15 @@ and other degenerated features introduced during MS analysis.
 	\caption{Plate 1 and Plate 3 of the ApexBio Natural Products library. In Plate 1, 5 out of 88 molecules were not detected in either positive or negative ionization mode. In contrast, in Plate 3, 17 molecules were not detected.}
 	\label{fig:ApexBioResults}
 \end{figure}
+
+To achieve this, we have acquired a library of 550 pure natural products, which we plan to mix
+together to create an “artificial extract” that mimics the complexity of a biological sample. The
+goal of this is to quantify the molecular losses that occur during the analytical workflow and
+incorporate these biases into the MRF model. This approach will not allow us to assess losses
+occurring during the extraction step, since we are not re-extracting the mixture; instead, it will
+let us benchmark the ionization and metabolite annotation stages. Also, this extract will also help
+us characterize not only molecular losses but also “additions,” such as ions, in-source fragments,
+and other degenerated features introduced during MS analysis.
 
 In addition to the artificial extract experiment, we also aim to analyze each pure compound
 individually using mass spectrometry. So far, Plate 1 has been processed, and Plate 3 was analyzed
@@ -357,13 +357,13 @@ represents a fraction of the chemical diversity that likely exists in nature. To
 this diversity, we aim to generate new, hypothetical molecules that are chemically plausible yet
 not currently documented in LOTUS. The goal of this task is to extend the known chemical space and
 thereby improve our capacity to annotate real mass spectrometry (MS) data. In addition, these newly
-generated molecules could be incorporated into the Markov Random Field model to enable predictions
-for new and unseen compounds.
+generated molecules could be incorporated into the Markov Random Field to enable predictions for
+new and unseen compounds.
 
 To achieve this, we performed an \textit{in silico} expansion starting from approximately $100'000$
 compounds in LOTUS, generating a set of about $3 \cdot 10^6$ new molecular structures. This
 expansion was carried out using the published tool
-MINE-Database\cite{jeffryesMINEsOpenAccess2015a,strutzMINE20Enhanced2022}, which was
+MINE-Database~\cite{jeffryesMINEsOpenAccess2015a,strutzMINE20Enhanced2022}, which was
 \href{https://github.com/commons-research/MINE-Database}{forked} and further improved by our former
 Master's student, Pascal Amrein.
 
@@ -380,8 +380,8 @@ yet been reported.
 \end{figure}
 
 As an initial validation, we compared the generated compounds with entries from
-COCONUT\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that does
-not include species occurrence information for all its compounds. As shown in
+COCONUT~\cite{sorokinaCOCONUTOnlineCollection2021}, another large natural product database that
+does not include species occurrence information for all its compounds. As shown in
 Figure~\ref{fig:vennPlotCoconut} about $17'000$ (0.57\%) of the \textit{in silico} molecules
 overlapped with structures in COCONUT, suggesting that the generation process can produce
 chemically realistic and biologically relevant compounds.
@@ -412,7 +412,7 @@ In the coming year, I aim to re-engage with the EMI-Monorepo and further develop
 Rust. Mastering this language is one of my personal objectives for the PhD. I believe that
 developing a dedicated chemical library—similar to RDKit but implemented in Rust—would be a
 valuable contribution to the scientific community and a meaningful way to advance my skills. This
-idea aligns with a proposal from our collaborator Daniel Probst, who suggested developing such a
+idea aligns with a proposal from our colleague Daniel Probst, who suggested developing such a
 Rust-based chemoinformatics library and invited us to collaborate on it.
 
 \section{Frag-Graph}
@@ -424,9 +424,9 @@ it would be possible to generalize this concept by constructing a single, large
 \textit{fragmentation graph} that connects all molecules together through their potential
 fragmentation relationships.
 
-In this approach, each input molecule is systematically fragmented by breaking all its bonds. The
-resulting fragments are considered as the molecule's children, and the full collection of molecules
-and fragments forms one single graph.
+In this approach, each input molecule is fragmented by breaking all its bonds. The resulting
+fragments are considered as the molecule's children, and the full collection of molecules and
+fragments forms one single graph.
 
 When analyzing a mass spectrum, we can then iterate over all nodes in the graph and check whether a
 fragment mass matches any of the observed peaks (within a defined tolerance). If a match is found,
