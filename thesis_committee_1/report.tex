@@ -287,7 +287,7 @@ connect computational predictions with real-world observations and to refine est
 occurrence across species. Compared to the physical isolation of compounds, MS enables much higher
 throughput and a greater number of annotations, while also allowing repeated acquisitions on the
 same extract. This makes it a powerful and complementary approach to databases like LOTUS, offering
-broader chemical coverage at the cost of lower annotation confidence.
+broader chemical coverage at the cost of \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{lower annotation confidence.}{which will need to be taken into account in the model}
 
 We initially envisioned the use of ViMMS~\cite{wandyViMMSFrameworkDevelop2022}, a simulation tool
 for MS data, as a potential way to model experimental variability and generate realistic spectra.
@@ -303,17 +303,17 @@ CFM-ID~\cite{wangCFMIDMoreAccurate2021}. These tools provide complementary estim
 identity and structural similarity, which can be combined probabilistically to represent confidence
 in compound–spectrum assignments. Using only the scores from these methods, rather than relying on
 any single tool, would make the approach more flexible and robust to future methodological
-improvements.
+\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{improvements.}{you could link to the benchmarking notebook and results of the different tools on the MAssSpecGym dataset.}
 
 At this stage, the specific implementation strategy is still under discussion. Our plan for the
 coming year is to integrate and weight the outputs of multiple annotation tools, allowing the MRF
 model to incorporate MS-based evidence in a consistent and scalable way.
 
 \subsection{Artificial Extract}
-As stated in the grant, we would like to model and include in the Markov Random Field, the
+\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{As stated in the grant, we would like to model and include in the Markov Random Field, the
 potential \textit{loss} of molecules during the experimental process from their presence in Nature
 to their identification by mass spectrometry (\textit{i.e.} extraction, liquid chromatography, and
-mass spectrometry fragmentation).
+mass spectrometry fragmentation).}{What I meant in my initial comment is that you do not want to only model the loss but also the emergence of new features. Typically any adducts, in source fragments, isotopes, etc ... You can rephrase your sentence accordingly.}
 
 \begin{figure}[!h]
 	\centering
@@ -330,7 +330,7 @@ mass spectrometry fragmentation).
 	\label{fig:ApexBioResults}
 \end{figure}
 
-To achieve this, we have acquired a library of 550 pure natural products, which we plan to mix
+To achieve this, we have acquired a library of \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{550 pure natural products,}{link to git versioned table of the compounds} which we plan to mix
 together to create an “artificial extract” that mimics the complexity of a biological sample. The
 goal of this is to quantify the molecular losses that occur during the analytical workflow and
 incorporate these biases into the MRF model. This approach will not allow us to assess losses
@@ -415,7 +415,7 @@ Rust-based chemoinformatics library and invited us to collaborate on it.
 
 \section{Frag-Graph}
 
-Another side project I am exploring is what I call the \textit{fragmentation graph}. Existing tools
+\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Another side project I am exploring}{I believe that a schematic represenation of the approach would help understanding the concept. Also link repo.} is what I call the \textit{fragmentation graph}. Existing tools
 such as SIRIUS use fragmentation trees to annotate molecules from mass spectra. These trees
 represent how a single molecule can fragment under specific conditions. However, I wondered whether
 it would be possible to generalize this concept by constructing a single, large
