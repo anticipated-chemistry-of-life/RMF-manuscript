@@ -154,11 +154,9 @@ that compound has never been experimentally detected in it before.
 \section{Markov Random Field}
 
 \subsection{WP 1}
-We assume that the pattern of presence and absence of molecules in species is described by
-similarities within each dimension. For instance, closely related species may share a similar set
-of NPs and NPs related in their synthesis may share a similar distribution across species. To model
-such similarities, we adopt a \href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov
-	Random Field} (MRF) approach.
+\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{We assume that the pattern of presence and absence of molecules in species is described by
+similarities within each dimension.}{It will be nice to add ref to previous work in the field . I notably have in mind paper by Nina Ronsted and simlar work on chemotaxonomy.} For instance, closely related species may share a similar set
+of NPs and NPs related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a \href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov Random Field} (MRF) \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{approach.}{Why ?}
 
 The first months of my PhD were dedicated to developing the technical skills to implement this
 model. To develop my \textit{C++} programming skills, I started by creating basic model components
@@ -172,7 +170,7 @@ whether the inference procedure could accurately recover known parameters from s
 These simulations revealed some issues in the inference, which led to some modifications.
 
 In particular, we modified the rate matrix to depend on a single parameter, $\alpha_c$,
-representing the rate of change from state $0$ to state $1$, as shown in Equation~\ref{eq:rate
+representing the rate of change from \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{state}{what is state 0 , what is stet 1 ? what does that means ? Remember try to take the reader by the hand. The have no a priori on what you doing here. Even experts.} $0$ to state $1$, as shown in Equation~\ref{eq:rate
 	matrix}.
 
 \begin{equation}
@@ -247,8 +245,8 @@ From this, the stationary distribution of the root state is derived as:
 
 Let $L_{ms}=1$ denote a known occurrence of NP $m$ in species $s$, and let $L_{ms}=0$ denote that
 no evidence for such an occurrence has been reported, either because the NP $m$ is truly absent in
-species $s$ or because of a lack of research effort. Let $x(m,s)$ denote the \textit{truth} for NP
-$m$ and species $s$.
+species $s$ or because of a lack of research effort. \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Let $x(m,s)$ denote the \textit{truth} for NP
+$m$ and species $s$.}{Here also you can state what is x = 1 and x = 0}
 
 To improve the robustness of the model against observational noise, we introduced an error rate
 parameter $\epsilon$ such that:
@@ -278,7 +276,7 @@ predictions. For instance, when running the model on a subset of LOTUS (the \tex
 family), it ended up predicting zeros everywhere and treating all known occurrences as
 mistakes—most likely because of the $\epsilon$ parameter we introduced. When fixing the error rate
 to zero, the model only recovered the molecules already present in LOTUS and did not predict
-anything new. At this point, I'm not yet sure why the inference behaves this way.
+anything new. At this point, \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{I'm not yet sure why the inference behaves this way.}{What directions are you willing to explore next iun order to solve this important issue ?}
 
 \subsection{WP 2}
 
