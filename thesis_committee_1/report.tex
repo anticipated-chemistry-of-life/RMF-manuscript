@@ -30,7 +30,7 @@
 \usepackage{authblk}
 \usepackage{sidecap}
 \sidecaptionvpos{figure}{t}
-\usepackage[labelfont=bf,font={it}]{caption}
+\usepackage[labelfont={bf,it},font={sl}]{caption}
 \usepackage[author={Default Reviewer}]{pdfcomment}
 \theoremstyle{definition}
 \newtheorem{example}{Example}
@@ -155,14 +155,22 @@ that compound has never been experimentally detected in it before.
 \section{Markov Random Field}
 
 \subsection{WP 1}
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{We assume that the pattern of presence and absence of molecules in species is described by
-	similarities within each dimension.}{It will be nice to add ref to previous work in the field . I notably have in mind paper by Nina Ronsted and simlar work on chemotaxonomy.} For instance, closely related species may share a similar set
-of NPs and NPs related in their synthesis may share a similar distribution across species. To model such similarities, we adopt a \href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov Random Field} (MRF) \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{approach.}{Why ?}
+Phylogenetically informed analyses have demonstrated that metabolite production is not randomly
+distributed but instead exhibits evolutionary patterns across taxa
+\cite{adamekAppliedEvolutionPhylogenybased2019,ronstedCanPhylogenyPredict2012,zhangPhylogeneticPatternsSuggest2021}.
+These results justify our assumption that similarities among species—and among molecules—can be
+modeled to predict presence/absence patterns. For instance, closely related species may share a
+similar set of NPs and NPs related in their synthesis may share a similar distribution across
+species. To model such similarities, we adopt a
+\href{https://en.wikipedia.org/wiki/Markov_random_field}{Markov Random Field} (MRF) approach. MRFs
+provide a way to model joint probability distributions over many variables while focusing on local
+dependencies, making it possible to capture pairwise similarities between species or molecules
+while still maintaining a coherent global probabilistic structure.
 
 The first months of my PhD were dedicated to developing the technical skills to implement this
-model. To develop my \textit{C++} programming skills, I started by creating basic model components
-such as bitwise operations, class design and \textit{C++} best practices. I also familiarized
-myself with the software tools available in Daniel Wegmann's lab such as
+model. To develop my C++ programming skills, I started by creating basic model components such as
+bitwise operations, class design and C++ best practices. I also familiarized myself with the
+software tools available in Daniel Wegmann's lab such as
 \href{https://bitbucket.org/wegmannlab/coretools/src/master/}{\textit{coretools}} and
 \href{https://bitbucket.org/wegmannlab/stattools/src/master/}{\textit{stattools}}.
 
@@ -171,10 +179,8 @@ whether the inference procedure could accurately recover known parameters from s
 These simulations revealed some issues in the inference, which led to some modifications.
 
 In particular, we modified the rate matrix to depend on a single parameter, $\alpha_c$,
-representing the rate of change from
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{state}{what is state 0 , what is
-	stet 1 ? what does that means ? Remember try to take the reader by the hand. The have no a priori
-	on what you doing here. Even experts.} $0$ to state $1$, as shown in Equation~\ref{eq:rate matrix}.
+representing the rate of change from state $0$ (\textit{i.e.} being absent) to state $1$
+(\textit{i.e.} being present), as shown in Equation~\ref{eq:rate matrix}.
 
 \begin{equation}
 	\bLambda_c =
@@ -208,32 +214,6 @@ child transitions to state $1$, it tends to remain in that state.
 	In this case, during the MCMC updates, if the parent node is $0$, the child node has roughly equal probabilities of being $0$ or $1$. However, if the parent node is $1$, the child node is also very likely to be $1$. This means that once a node transitions to state $1$ during the MCMC updates, it will likely remain in that state.
 \end{example*}
 
-% \begin{figure}[!h]
-% 	\centering
-% 	\begin{subfigure}[t]{0.3\textwidth}
-% 		\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,>={Stealth[round]},
-% 			every state/.style={draw=blue!50,very thick,fill=blue!20}]
-% 			\node[state]	(n_0)	{$0$};
-% 			\node[state]          (n_1) [below =of n_0] {$1$};
-% 			\path[->] (n_0) edge node [left] {$0\to1\to1\to1$} (n_1);
-% 		\end{tikzpicture}
-% 		\caption{High change rate.}
-% 		\label{fig:highAlpha}
-% 	\end{subfigure}
-% 	\quad
-% 	\begin{subfigure}[t]{0.3\textwidth}
-% 		\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,>={Stealth[round]},
-% 			every state/.style={draw=blue!50,very thick,fill=blue!20}]
-% 			\node[state]	(n_2)	[right =of n_0]{$0$};
-% 			\node[state]          (n_3) [below =of n_2] {$0$};
-% 			\path[->] (n_2) edge node [left] {$0\to1\to0\to0$} (n_3);
-% 		\end{tikzpicture}
-% 		\caption{Low change rate.}
-% 		\label{fig:lowAlpha}
-% 	\end{subfigure}
-% 	\caption{Testing the caption \ref{fig:highAlpha}}
-% \end{figure}
-
 The modification in Equation~\ref{eq:rate matrix} adjusts the transition probabilities between a
 parent node $p(n)$ and its child $n$ as follows:
 \begin{equation}
@@ -248,9 +228,9 @@ From this, the stationary distribution of the root state is derived as:
 
 Let $L_{ms}=1$ denote a known occurrence of NP $m$ in species $s$, and let $L_{ms}=0$ denote that
 no evidence for such an occurrence has been reported, either because the NP $m$ is truly absent in
-species $s$ or because of a lack of research effort.
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Let $x(m,s)$ denote the
-	\textit{truth} for NP $m$ and species $s$.}{Here also you can state what is x = 1 and x = 0}
+species $s$ or because of a lack of research effort. Let $x(m,s)$ denote the \textit{truth} for NP
+$m$ and species $s$ where $x(m,s) = 1$ denotes the presence of molecule $m$ in species $s$ and
+$x(m,s) = 1$ when it is absent.
 
 To improve the robustness of the model against observational noise, we introduced an error rate
 parameter $\epsilon$ such that:
@@ -279,10 +259,15 @@ molecule-species occurrence patterns. However, the current inference is not prod
 predictions. For instance, when running the model on a subset of LOTUS (the \textit{Asterales}
 family), it ended up predicting zeros everywhere and treating all known occurrences as
 mistakes—most likely because of the $\epsilon$ parameter we introduced. When fixing the error rate
-to zero, the model only recovered the molecules already present in LOTUS and did not predict
-anything new. At this point, \pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{I'm
-	not yet sure why the inference behaves this way.}{What directions are you willing to explore next
-	iun order to solve this important issue ?}
+to zero, the model only predicted the molecules already present in LOTUS and did not predict
+anything new.
+
+At this point, I am not yet sure why the inference behaves this way, but one potential explanation
+is the extreme sparsity of the data. As a next step, I would like to enrich the dataset
+synthetically—for example by artificially adding occurrences in LOTUS to test whether denser data
+helps the model converge toward meaningful predictions. I'd also like to examine the behavior of
+the model in a simplified setting by inferring the presence of a single, highly abundant molecule,
+which should allow us to assess whether the inference is capable of predicting meaningful patterns.
 
 \subsection{WP 2}
 
@@ -293,9 +278,8 @@ connect computational predictions with real-world observations and to refine est
 occurrence across species. Compared to the physical isolation of compounds, MS enables much higher
 throughput and a greater number of annotations, while also allowing repeated acquisitions on the
 same extract. This makes it a powerful and complementary approach to databases like LOTUS, offering
-broader chemical coverage at the cost of
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{lower annotation confidence.}{which
-	will need to be taken into account in the model}
+broader chemical coverage at the cost oflower annotation confidence —an aspect that we will need to
+take into account in the model.
 
 We initially envisioned the use of ViMMS~\cite{wandyViMMSFrameworkDevelop2022}, a simulation tool
 for MS data, as a potential way to model experimental variability and generate realistic spectra.
@@ -311,18 +295,27 @@ CFM-ID~\cite{wangCFMIDMoreAccurate2021}. These tools provide complementary estim
 identity and structural similarity, which can be combined probabilistically to represent confidence
 in compound–spectrum assignments. Using only the scores from these methods, rather than relying on
 any single tool, would make the approach more flexible and robust to future methodological
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{improvements.}{you could link to
-	the benchmarking notebook and results of the different tools on the MAssSpecGym dataset.}
+improvements. The idea of remaining independent of any single annotation tool has been was shown by
+the rapid emergence of new models. In the past year alone, two previously closed-source
+approaches—ICEBERG~\cite{wangNeuralSpectralPrediction2025} and
+FIORA~\cite{nowatzkyFIORALocalNeighborhoodbased2025}—have released open-source model weights thanks
+to the
+\href{https://huggingface.co/datasets/roman-bushuiev/MassSpecGym}{MassSpecGym}~\cite{bushuievMassSpecGymBenchmarkDiscovery2024}
+dataset. Early benchmarking suggests that both models
+\href{https://github.com/commons-research/ms2mol-evaluation/tree/5e62a41ff8ea0ae84bcda50fd92681b3dba06576/evaluations}{outperform}
+established tools such as SIRIUS, MetFrag, and CFM-ID. This rapid pace of improvement shows the
+importance of designing a model that can flexibly incorporate scores from multiple annotation
+methods, rather than relying on any fixed set of tools.
 
 At this stage, the specific implementation strategy is still under discussion. Our plan for the
 coming year is to integrate and weight the outputs of multiple annotation tools, allowing the MRF
 model to incorporate MS-based evidence in a consistent and scalable way.
 
 \subsection{Artificial Extract}
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{As stated in the grant, we would like to model and include in the Markov Random Field, the
-	potential \textit{loss} of molecules during the experimental process from their presence in Nature
-	to their identification by mass spectrometry (\textit{i.e.} extraction, liquid chromatography, and
-	mass spectrometry fragmentation).}{What I meant in my initial comment is that you do not want to only model the loss but also the emergence of new features. Typically any adducts, in source fragments, isotopes, etc ... You can rephrase your sentence accordingly.}
+As stated in the grant, we would like to model and include in the Markov Random Field, the
+potential \textit{loss} of molecules during the experimental process from their presence in Nature
+to their identification by mass spectrometry (\textit{i.e.} extraction, liquid chromatography, and
+mass spectrometry fragmentation).
 
 \begin{figure}[!h]
 	\centering
@@ -340,23 +333,22 @@ model to incorporate MS-based evidence in a consistent and scalable way.
 \end{figure}
 
 To achieve this, we have acquired a library of
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{550 pure natural products,}{link to
-	git versioned table of the compounds} which we plan to mix together to create an “artificial
-extract” that mimics the complexity of a biological sample. The goal of this is to quantify the
-molecular losses that occur during the analytical workflow and incorporate these biases into the
-MRF model. This approach will not allow us to assess losses occurring during the extraction step,
-since we are not re-extracting the mixture; instead, it will let us benchmark the ionization and
-metabolite annotation stages. Also, this extract will also help us characterize not only molecular
-losses but also “additions,” such as ions, in-source fragments, and other degenerated features
-introduced during MS analysis.
+\href{https://github.com/commons-research/apex_bio_data_cleaning/blob/cdada7fdd91213f252ed526b545627724c075b2e/apex_bio_cleaned.tsv}{550
+	pure natural products}, which we plan to mix together to create an “artificial extract” that mimics
+the complexity of a biological sample. The goal of this is to quantify the molecular losses that
+occur during the analytical workflow and incorporate these biases into the MRF model. This approach
+will not allow us to assess losses occurring during the extraction step, since we are not
+re-extracting the mixture; instead, it will let us benchmark the ionization and metabolite
+annotation stages. In addition to molecular losses, this extract will also help us characterize the
+“additions,” such as ions, in-source fragments, and other degenerated features introduced during MS
+analysis.
 
-In addition to the artificial extract experiment, we also aim to analyze each pure compound
-individually using mass spectrometry. So far, Plate 1 has been processed, and Plate 3 was analyzed
-by Jade Dandois, a bachelor student whom I coached between February and June of this year. As shown
-in Figure~\ref{fig:ApexBioResults}, Plate 3 displays a noticeably higher number of missing
-molecules than Plate 1, with several compounds absent in both ionization modes. Given the high
-number of missing compounds in Plate 3 I plan to re-run it in the coming weeks, along with the
-remaining plates.
+Furthermore, we also aim to analyze each pure compound individually using mass spectrometry. So
+far, Plate 1 has been processed, and Plate 3 was analyzed by Jade Dandois, a bachelor student whom
+I coached between February and June of this year. As shown in Figure~\ref{fig:ApexBioResults},
+Plate 3 displays a noticeably higher number of missing molecules than Plate 1, with several
+compounds absent in both ionization modes. Given the high number of missing compounds in Plate 3 I
+plan to re-run it in the coming weeks, along with the remaining plates.
 
 \section{LOTUS Expanded}
 
@@ -371,10 +363,9 @@ new and unseen compounds.
 
 To achieve this, we performed an \textit{in silico} expansion starting from approximately $100'000$
 compounds in LOTUS, generating a set of about $3 \cdot 10^6$ new molecular structures. This
-expansion was carried out using the published tool
-MINE-Database~\cite{jeffryesMINEsOpenAccess2015a,strutzMINE20Enhanced2022}, which was
-\href{https://github.com/commons-research/MINE-Database}{forked} and further improved by our former
-Master's student, Pascal Amrein.
+expansion was carried out using the published tool MINE-Database~\cite{strutzMINE20Enhanced2022},
+which was \href{https://github.com/commons-research/MINE-Database}{forked} and further improved by
+our former Master's student, Pascal Amrein.
 
 These generated compounds can then be fragmented to produce an \textit{in silico} spectral database
 (ISDB), which can be compared with experimental data. This process should increase the number of
@@ -426,12 +417,49 @@ Rust-based chemoinformatics library and invited us to collaborate on it.
 
 \section{Frag-Graph}
 
-\pdfmarkupcomment[author={PMA},markup=Highlight,color={yellow}]{Another side project I am exploring}{I believe that a schematic represenation of the approach would help understanding the concept. Also link repo.} is what I call the \textit{fragmentation graph}. Existing tools
+Another side project I am exploring is what I call the \textit{fragmentation graph}. Existing tools
 such as SIRIUS use fragmentation trees to annotate molecules from mass spectra. These trees
 represent how a single molecule can fragment under specific conditions. However, I wondered whether
 it would be possible to generalize this concept by constructing a single, large
 \textit{fragmentation graph} that connects all molecules together through their potential
 fragmentation relationships.
+
+\begin{figure}[!h]
+	\centering
+	\begin{tikzpicture}
+		\begin{scope}[every node/.style={draw=blue!50,very thick,fill=blue!20,circle}]
+			\node (frag_1) at (-1,0) {$f_1$};
+			\node (mol_3) at (1,0) {$m_3$};
+			\node (mol_1) at (1,2) {$m_1$};
+			\node (frag_2) at (3,0) {$f_2$};
+			\node (frag_3) at (5,0) {$f_3$};
+			\node (mol_2) at (5,2) {$m_2$};
+			\node (f_4) at (0,-2) {$f_4$};
+			\node (f_5) at (2,-2) {$f_5$};
+			\node (f_6) at (7,0) {$f_6$};
+		\end{scope}
+
+		\begin{scope}[>={Stealth[round]},
+			every edge/.style={draw=black}]
+			\path [->] (mol_1) edge node {} (frag_1);
+			\path [->] (mol_1) edge node {} (frag_2);
+			\path [->] (mol_1) edge node {} (mol_3);
+			\path [->] (mol_2) edge node {} (frag_2);
+			\path [->] (mol_2) edge node {} (frag_3);
+			\path [->] (mol_2) edge node {} (f_6);
+			\path [->] (mol_3) edge node {} (f_4);
+			\path [->] (mol_3) edge node {} (f_5);
+			\path [->] (mol_2) edge[bend left=15] node {} (f_5);
+		\end{scope}
+	\end{tikzpicture}
+	\caption{Example of a fragmentation graph limited to a single generation (\textit{i.e.}, fragments
+		generated from the starting molecules are not further fragmented). Nodes labeled $m$
+		represent starting molecules, and nodes labeled $f$ represent fragments. A starting molecule
+		may produce another starting molecule as a fragment (\textit{e.g.}, $m_1$ produces $m_3$), and different
+		molecules may generate identical fragments (\textit{e.g.}, both $m_1$ and $m_2$ generate
+		$f_2$).}
+	\label{fig:fragmentationGraph}
+\end{figure}
 
 In this approach, each input molecule is fragmented by breaking all its bonds. The resulting
 fragments are considered as the molecule's children, and the full collection of molecules and
@@ -442,16 +470,31 @@ fragment mass matches any of the observed peaks (within a defined tolerance). If
 the corresponding intensity is assigned to that fragment and propagated to all its parent molecules
 in the graph.
 
-To test this idea, I generated a fragmentation graph from the molecules in
-\href{https://zenodo.org/records/14887271}{\textit{ISDB: In Silico DataBase
-		(isdb\_lotus\_pos\_energySum.mgf)}}. Starting from 141,514 molecules, the procedure produced a
-graph containing 1,656,090 nodes (molecules or fragments) and 3,038,519 edges. I then downloaded
-the spectra from \href{https://huggingface.co/datasets/roman-bushuiev/MassSpecGym}{MassSpecGym} and
-randomly sampled 500 of them for evaluation. As shown in Table~\ref{table:FragGraphResults}, even
-with a very naive fragmentation scheme—simply breaking each bond of the parent molecule and
-recording the two resulting fragments—the correct molecule appears within the top 10 candidates in
-more than $50\%$ of the test cases. For 36 spectra, the correct molecule was not retrieved within
-the ranked results.
+\begin{example*}
+	Let us use Figure~\ref{fig:fragmentationGraph} as an example. Suppose we iterate over the masses in
+	a mass spectrum and that the true molecule is $m_1$. If one of the observed masses matches fragment
+	$f_5$, then the parent molecule could be $m_1$, $m_2$ or $m_3$. If we then observe a mass matching
+	$f_4$ the most likely parents narrow to $m_1$ or $m_3$. Finally, if a mass corresponding to $f_1$
+	is detected, $m_1$ becomes the most plausible candidate, as it explains the largest number of
+	observed fragments.
+
+	This approach relies on the assumption that a spectrum originates from a single molecule, and that
+	enough of its fragments will be detected to uniquely identify it. In practice, different molecules
+	generate distinct—though sometimes partially overlapping fragments, so accumulating multiple
+	matching peaks helps narrow down the candidates until only the correct molecule remains.
+\end{example*}
+
+To test this idea, I \href{https://github.com/commons-research/fragmentation-graph}{generated} a
+fragmentation graph from the molecules in \href{https://zenodo.org/records/14887271}{\textit{ISDB:
+		In Silico DataBase (isdb\_lotus\_pos\_energySum.mgf)}}. Starting from 141,514 molecules, the
+procedure produced a graph containing 1,656,090 nodes (molecules or fragments) and 3,038,519 edges.
+I then downloaded the spectra from
+\href{https://huggingface.co/datasets/roman-bushuiev/MassSpecGym}{MassSpecGym} and randomly sampled
+500 of them for evaluation. As shown in Table~\ref{table:FragGraphResults}, even with a very naive
+fragmentation scheme—simply breaking each bond of the parent molecule and recording the two
+resulting fragments—the correct molecule appears within the top 10 candidates in more than $50\%$
+of the test cases. For 36 spectra, the correct molecule was not retrieved within the ranked
+results.
 
 These results are far from optimal, but this is expected given how rudimentary the current
 fragmentation strategy is. The procedure can (and likely should) be improved by incorporating more
@@ -518,7 +561,4 @@ developing it into a functional annotation tool.
 \printbibliography
 
 \end{document}
-
-% I am writing the annual report of my PhD in LaTex. I am required to summarize the progress made and outline the planned work for the next year in a written report of 3-4 pages. I've written the skeleton of the report and I want you to help me improve my grammar, make the sentences more coherent and fluid. Each section should always contain a context, a task and a need (why I do this, What I did, and what I'm planning to do). Make the sentences clear and simple. 
-% I'll give you the sections one after each other.  
 
