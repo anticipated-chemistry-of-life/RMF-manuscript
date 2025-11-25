@@ -246,7 +246,7 @@ parameter $\epsilon$ such that:
 
 Finally, the probability of discovery $R_{ms}$ was redefined as:
 \begin{equation}
-	R_{ms} = (1 - e^{-\gamma_0 P_m })  (1 - e^{-\gamma_1 Q_s})
+	R_{ms} = (1 - e^{-\gamma_0 \sqrt{P_m} })  (1 - e^{-\gamma_1 \sqrt{Q_s}})
 \end{equation}
 
 Where $P_m$ and $Q_s$ represent the total number of relevant papers published for molecule $m$ and
@@ -278,8 +278,8 @@ connect computational predictions with real-world observations and to refine est
 occurrence across species. Compared to the physical isolation of compounds, MS enables much higher
 throughput and a greater number of annotations, while also allowing repeated acquisitions on the
 same extract. This makes it a powerful and complementary approach to databases like LOTUS, offering
-broader chemical coverage at the cost oflower annotation confidence —an aspect that we will need to
-take into account in the model.
+broader chemical coverage at the cost of lower annotation confidence —an aspect that we will need
+to take into account in the model.
 
 We initially envisioned the use of ViMMS~\cite{wandyViMMSFrameworkDevelop2022}, a simulation tool
 for MS data, as a potential way to model experimental variability and generate realistic spectra.
